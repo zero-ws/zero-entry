@@ -18,7 +18,6 @@ import io.vertx.up.atom.typed.UTenant;
 import io.vertx.up.commune.config.Database;
 import io.vertx.up.commune.config.Integration;
 import io.vertx.up.eon.KName;
-import io.vertx.up.runtime.ZeroArcane;
 import io.vertx.up.unity.Ux;
 import io.vertx.up.util.Ut;
 
@@ -133,21 +132,19 @@ public class Ok implements OkA {
         if (!this.initialized) {
             OInfix.on(vertx);
             LOGGER.info("[ Ok ] Zero Infusion has been initialized!! = {0}", this.tenant);
-            return ZeroArcane.startEdge(vertx, null, null).compose(nil -> {
-                // 应用初始化
-                final JsonObject app = this.tenant.getApplication();
-                final String sigma = app.getString(KName.SIGMA);
-                final String appId = app.getString(KName.APP_ID);
-                if (Ut.isNil(appId)) {
-                    this.app = Ke.ark(sigma);
-                } else {
-                    this.app = Ke.ark(appId);
-                }
-                // 环境初始化完成
-                LOGGER.info("[ Ok ] Tenant AmbientOld has been initialized!! = {0}", this.tenant);
-                this.initialized = true;
-                return Future.succeededFuture(this);
-            });
+            // 应用初始化
+            final JsonObject app = this.tenant.getApplication();
+            final String sigma = app.getString(KName.SIGMA);
+            final String appId = app.getString(KName.APP_ID);
+            if (Ut.isNil(appId)) {
+                this.app = Ke.ark(sigma);
+            } else {
+                this.app = Ke.ark(appId);
+            }
+            // 环境初始化完成
+            LOGGER.info("[ Ok ] Tenant AmbientOld has been initialized!! = {0}", this.tenant);
+            this.initialized = true;
+            return Future.succeededFuture(this);
         } else {
             return Future.succeededFuture(this);
         }
