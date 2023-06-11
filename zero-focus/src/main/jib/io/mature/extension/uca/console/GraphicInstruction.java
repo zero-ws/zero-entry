@@ -1,8 +1,8 @@
 package io.mature.extension.uca.console;
 
 import io.macrocosm.specification.program.HArk;
+import io.mature.exploit.stellar.Ok;
 import io.mature.extension.scaffold.console.AbstractInstruction;
-import io.mature.extension.stellaris.Ok;
 import io.mature.extension.uca.graphic.Plotter;
 import io.mature.extension.uca.graphic.TopologyPlotter;
 import io.vertx.core.Future;

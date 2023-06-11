@@ -1,10 +1,10 @@
 package io.mature.extension.uca.console;
 
 import io.macrocosm.specification.program.HArk;
+import io.mature.exploit.stellar.Ok;
 import io.mature.extension.migration.MigrateStep;
 import io.mature.extension.migration.restore.MetaLimit;
 import io.mature.extension.scaffold.console.AbstractInstruction;
-import io.mature.extension.stellaris.Ok;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.up.plugin.shell.atom.CommandInput;

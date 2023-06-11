@@ -228,30 +228,4 @@ public interface OxCv {
          */
         String TARGET_PREFIX = "target";
     }
-
-    /**
-     * ## 「内部类」环境目录常量
-     *
-     * ### 1. 基本介绍
-     *
-     * CMDB中定义的环境基础配置数据：
-     *
-     * - CMDB配置目录：`external`目录。
-     * - CMDB配置文件：`configuration.json`文件。
-     * - Shell环境专用配置。
-     *
-     * > 上述配置根目录从启动项目`ox-driver/ix-atlantic`的`src/main/resources`开始计算（标准Maven）。
-     *
-     * @author <a href="http://www.origin-x.cn">Lang</a>
-     */
-    interface Ambient {
-        /**
-         * <value>runtime/external</value>，「CMDB」专用环境配置（外联）。
-         **/
-        String CONFIG_EXTERNAL = "runtime/external/";
-        /**
-         * <value>runtime/configuration.json</value>，「CMDB」运行时环境配置（专用）。
-         */
-        String CONFIG_FILE = "runtime/configuration.json";
-    }
 }

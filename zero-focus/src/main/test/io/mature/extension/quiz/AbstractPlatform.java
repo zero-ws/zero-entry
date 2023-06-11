@@ -4,12 +4,12 @@ import io.horizon.eon.em.Environment;
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
+import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkA;
+import io.mature.exploit.stellar.PartyA;
 import io.mature.extension.quiz.atom.QModel;
-import io.mature.extension.quiz.atom.QOk;
 import io.mature.extension.quiz.atom.QRequest;
 import io.mature.extension.refine.Ox;
-import io.mature.extension.stellaris.Ok;
-import io.mature.extension.stellaris.OkA;
 import io.mature.extension.uca.elasticsearch.EsIndex;
 import io.mature.extension.uca.graphic.Plotter;
 import io.mature.extension.uca.graphic.TopologyPlotter;
@@ -72,7 +72,7 @@ public abstract class AbstractPlatform extends JooqBase {
     @SuppressWarnings("all")
     public void setUp(final TestContext context, final Async async) {
         Ok.ok().onSuccess(initialized -> {
-            this.ok = QOk.create(initialized, this.environment);
+            this.ok = PartyA.create(initialized, this.environment);
             this.logger().info("[ Qz ] Qz Framework has been initialized!!! Env = `{0}`", this.environment);
             final boolean runnable = this.setUpAfter(context, async);
             if (runnable) {

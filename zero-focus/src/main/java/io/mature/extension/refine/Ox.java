@@ -10,6 +10,7 @@ import io.horizon.spi.plugin.AfterPlugin;
 import io.horizon.spi.plugin.AspectPlugin;
 import io.horizon.uca.log.Log;
 import io.horizon.uca.log.LogModule;
+import io.mature.exploit.stellar.ArgoStore;
 import io.mature.extension.cv.em.TypeLog;
 import io.mature.extension.uca.code.Numeration;
 import io.modello.atom.app.KIntegration;
@@ -171,7 +172,7 @@ public final class Ox {
      * @return {@link KIdentity} 构造好的标识规则选择器
      */
     public static KIdentity pluginIdentifier(final DataAtom atom) {
-        return OxConfig.toIdentity(atom, OxConfig.toOptions());
+        return OxConfig.toIdentity(atom, ArgoStore.options());
     }
 
     /**
@@ -754,10 +755,6 @@ public final class Ox {
         return data;
     }
 
-    public static String stellarConnect() {
-        return OxConfig.stellarConnect();
-    }
-
     /**
      * 数组压缩，将每个元素中的`null`使用`""`替换。
      *
@@ -800,44 +797,6 @@ public final class Ox {
          */
         static Class<?> commutator(final Class<?> commutator) {
             return OxConfig.toCommutator(commutator);
-        }
-
-        /**
-         * <value>options</value>，返回服务配置选项专用数据，构造`options`选项。
-         *
-         * @return {@link JsonObject}
-         */
-        static JsonObject options() {
-            return OxConfig.toOptions();
-        }
-
-        /**
-         * 读取核心配置，使用双维度从核心配置中提取配置信息。
-         *
-         * 原始配置如下：
-         *
-         * ```json
-         * // <pre><code class="json">
-         * {
-         *     "components": {
-         *         "ADD.true": {},
-         *         "ADD.false": {},
-         *         "UPDATE.true": {},
-         *         "UPDATE.false": {},
-         *         "DELETE.true": {},
-         *         "DELETE.false": {}
-         *     }
-         * }
-         * // </code></pre>
-         * ```
-         *
-         * @param type  {@link ChangeFlag} 操作类型
-         * @param batch {@link Boolean} 是否批量
-         *
-         * @return {@link JsonObject} 配置项数据
-         */
-        static JsonObject components(final ChangeFlag type, final Boolean batch) {
-            return OxConfig.HEX.data(type, batch);
         }
 
         /**

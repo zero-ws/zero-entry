@@ -1,7 +1,7 @@
 package io.mature.extension.uca.console;
 
+import io.mature.exploit.stellar.Ok;
 import io.mature.extension.scaffold.console.AbstractInstruction;
-import io.mature.extension.stellaris.Ok;
 import io.vertx.core.Future;
 import io.vertx.mod.ke.booter.Bt;
 import io.vertx.up.plugin.shell.atom.CommandInput;

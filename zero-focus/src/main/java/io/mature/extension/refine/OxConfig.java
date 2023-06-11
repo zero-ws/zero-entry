@@ -1,14 +1,12 @@
 package io.mature.extension.refine;
 
 import io.horizon.eon.VString;
-import io.mature.extension.cv.OxCv;
+import io.mature.exploit.stellar.ArgoStore;
 import io.mature.extension.cv.em.TypeLog;
 import io.modello.atom.normalize.KIdentity;
 import io.modello.eon.VDBC;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
-import io.vertx.up.atom.element.JSix;
-import io.vertx.up.eon.KName;
 import io.vertx.up.util.Ut;
 
 import java.util.Objects;
@@ -16,69 +14,23 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * ## 环境配置工具
+ * 环境配置工具
+ * <pre><code>
+ *    1. 基本介绍
+ *       系统中的基础环境配置专用工具类。
  *
- * ### 1. 基本介绍
- *
- * 系统中的基础环境配置专用工具类。
- *
- * ### 2. 支持功能
- *
- * - 检查是否开启了ITSM环境。
- * - 读取<strong>六维度</strong>的基础配置信息。
- * - 日志配置解析和读取。
- * - 标识规则选择器读取/Commutator生命周期选择器读取。
+ *    2. 支持功能
+ *       - 检查是否开启了ITSM环境。
+ *       - 读取<strong>六维度</strong>的基础配置信息。
+ *       - 日志配置解析和读取。
+ *       - 标识规则选择器读取/Commutator生命周期选择器读取。
+ * </code></pre>
  *
  * @author <a href="http://www.origin-x.cn">Lang</a>
  */
 final class OxConfig {
-
-    /**
-     * 六维度核心数据结构，类型{@link JSix}。
-     *
-     * 3 x 2 的维度结构
-     *
-     * - 维度1：ChangeFlag（增删改）
-     * - 维度2：batch（是否批量）
-     *
-     * 解析的根节点
-     *
-     * ```json
-     * // <pre><code class="json">
-     * {
-     *     "components": {
-     *         "ADD.true": {},
-     *         "ADD.false": {},
-     *         "UPDATE.true": {},
-     *         "UPDATE.false": {},
-     *         "DELETE.true": {},
-     *         "DELETE.false": {}
-     *     }
-     * }
-     * // </code></pre>
-     * ```
-     *
-     * 维度表格：
-     *
-     * |ChangeType|batch|含义|
-     * |---|---|:---|
-     * |ADD|true|多记录添加（批量）|
-     * |ADD|false|单记录添加|
-     * |UPDATE|true|多记录更新（批量）|
-     * |UPDATE|false|单记录更新|
-     * |DELETE|true|多记录删除（批量）|
-     * |DELETE|false|单记录删除|
-     */
-    static final JSix HEX;
-    /**
-     * 内部配置原始数据信息，{@link JsonObject}类型。
-     *
-     * 默认读取路径：`runtime/configuration.json`
-     */
-    private static final JsonObject CONFIGURATION = new JsonObject();
     /**
      * 错误信息Map，存储了错误信息的哈希表，从`ko`中提取错误信息。
-     *
      * ```json
      * // <pre><code class="json">
      *     {
@@ -95,11 +47,10 @@ final class OxConfig {
     private static final ConcurrentMap<TypeLog, String> MESSAGE = new ConcurrentHashMap<>();
 
     static {
-        final JsonObject configuration = Ut.ioJObject(OxCv.Ambient.CONFIG_FILE);
-        CONFIGURATION.mergeIn(configuration);
         /*
          * 日志
          */
+        final JsonObject configuration = ArgoStore.configuration();
         final JsonObject koJson = configuration.getJsonObject("ko");
         if (Ut.isNotNil(koJson)) {
             koJson.fieldNames().forEach(field -> {
@@ -112,7 +63,6 @@ final class OxConfig {
                 }
             });
         }
-        HEX = JSix.create(CONFIGURATION);
     }
 
     /*
@@ -121,21 +71,14 @@ final class OxConfig {
     private OxConfig() {
     }
 
-    private static JsonObject toConfiguration() {
-        return CONFIGURATION;
-    }
-
-    static String stellarConnect() {
-        return CONFIGURATION.getString(KName.Tenant.STELLAR, null);
-    }
-
     /**
      * <value>item.enabled</value>，ITSM 专用流程开关。
      *
      * @return {@link Boolean} ITSM是否启用
      */
     static boolean isItsmEnabled() {
-        final JsonObject configuration = toConfiguration();
+        // 新版方法内部调用 ArgoStore.configuration()
+        final JsonObject configuration = ArgoStore.configuration();
         final Boolean enabled = configuration.getBoolean("itsm.enabled");
         if (Objects.isNull(enabled)) {
             return false;
@@ -152,27 +95,13 @@ final class OxConfig {
      * @return {@link Class} 返回最终的 clazz 值
      */
     static Class<?> toCommutator(final Class<?> commutator) {
-        final JsonObject configuration = toConfiguration();
+        // 新版方法内部调用 ArgoStore.configuration()
+        final JsonObject configuration = ArgoStore.configuration();
         final String clsStr = configuration.getString("cmdb.commutator");
         if (Ut.isNil(clsStr)) {
             return commutator;
         } else {
             return Ut.clazz(clsStr, commutator);
-        }
-    }
-
-    /**
-     * <value>options</value>，返回服务配置选项专用数据，构造`options`选项。
-     *
-     * @return {@link JsonObject}
-     */
-    static JsonObject toOptions() {
-        final JsonObject configuration = toConfiguration();
-        final JsonObject pluginConfig = configuration.getJsonObject(KName.OPTIONS);
-        if (Ut.isNil(pluginConfig)) {
-            return new JsonObject();
-        } else {
-            return pluginConfig.copy();
         }
     }
 

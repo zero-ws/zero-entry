@@ -10,6 +10,7 @@ import io.vertx.up.util.Ut;
 
 import static io.vertx.mod.ke.refine.Ke.LOG;
 
+@Deprecated
 public class InstClick {
     private final transient Class<?> target;
 
