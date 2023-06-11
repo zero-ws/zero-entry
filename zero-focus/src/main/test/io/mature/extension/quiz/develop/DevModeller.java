@@ -1,6 +1,7 @@
 package io.mature.extension.quiz.develop;
 
 import cn.vertxup.ambient.service.application.InitStub;
+import io.horizon.atom.program.KTimer;
 import io.horizon.eon.VPath;
 import io.horizon.eon.VString;
 import io.horizon.eon.em.Environment;
@@ -17,8 +18,6 @@ import io.modello.dynamic.modular.file.ExcelReader;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.Model;
 import io.vertx.mod.atom.modeling.Schema;
-import io.vertx.up.unity.Ux;
-import io.vertx.up.unity.UxTimer;
 import io.vertx.up.util.Ut;
 
 import java.util.HashSet;
@@ -68,7 +67,7 @@ public class DevModeller {
             /*
              * Timer started
              */
-            final UxTimer timer = Ux.Timer.on().start(System.currentTimeMillis());
+            final KTimer timer = KTimer.of().start();
             final AoFile reader = Ut.singleton(ExcelReader.class, this.input);
             final Set<Model> models = reader.readModels(app.name());
             final Set<Schema> schemata = new HashSet<>();
@@ -95,7 +94,7 @@ public class DevModeller {
             /*
              * Timer end
              */
-            timer.end(System.currentTimeMillis());
+            timer.end();
             LOG.Hub.info(this.getClass(), "Successfully generation: {0}", timer.value());
             if (Objects.isNull(actuator)) {
                 System.exit(0);
@@ -118,7 +117,7 @@ public class DevModeller {
             /*
              * Timer started
              */
-            final UxTimer timer = Ux.Timer.on().start(System.currentTimeMillis());
+            final KTimer timer = KTimer.of().start();
             stub.initModeling(app.name(), this.output).compose(initialized -> {
                 // #NEW_LOG
                 LOG.Atom.info(this.getClass(), "Modeling Environment has been initialized!");

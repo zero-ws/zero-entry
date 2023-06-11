@@ -29,6 +29,6 @@ public class Envoy {
      * @return {@link java.util.stream.Stream}
      */
     public static Stream<String> ioFile(final String folder, final boolean oob, final String prefix) {
-        return LoadIo.ioFiles(folder, oob, prefix);
+        return IoResource.ioFiles(folder, oob, prefix);
     }
 }

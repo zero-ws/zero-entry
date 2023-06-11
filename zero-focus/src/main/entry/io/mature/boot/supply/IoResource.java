@@ -10,8 +10,7 @@ import java.util.stream.Stream;
 /**
  * @author lang : 2023-06-10
  */
-class LoadIo {
-
+class IoResource {
 
     static Stream<String> ioFiles(final String folder, final boolean oob, final String prefix) {
         final List<String> files = Ut.ioFilesN(folder, null, prefix);
@@ -20,7 +19,7 @@ class LoadIo {
             boots.forEach(boot -> files.addAll(boot.oob(prefix)));
         }
         // 并行
-        return files.parallelStream().filter(LoadIo::ensure);
+        return files.parallelStream().filter(IoResource::ensure);
     }
 
     private static boolean ensure(final String filename) {
