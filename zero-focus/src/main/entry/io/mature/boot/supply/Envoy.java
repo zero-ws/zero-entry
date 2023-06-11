@@ -1,11 +1,13 @@
-package io.mature.supply;
+package io.mature.boot.supply;
+
+import io.vertx.boot.supply.Electy;
 
 import java.util.stream.Stream;
 
 /**
- * 和内置的 {@link io.vertx.up.supply.Electy} 形成对比
+ * 和内置的 {@link Electy} 形成对比
  * <pre><code>
- *     1. {@link io.vertx.up.supply.Electy} 主要负责核心框架运行时处理
+ *     1. {@link Electy} 主要负责核心框架运行时处理
  *     2. {@link Envoy} 则负责扩展框架中启动时的数据提供，针对不同的入口启动器
  * </code></pre>
  *

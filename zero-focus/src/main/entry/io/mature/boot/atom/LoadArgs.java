@@ -1,4 +1,4 @@
-package io.mature.supply.atom;
+package io.mature.boot.atom;
 
 import io.horizon.eon.em.Environment;
 
