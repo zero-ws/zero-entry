@@ -1,18 +1,18 @@
 package io.mature.extension.scaffold.component;
 
 import io.vertx.up.annotations.Contract;
-import io.vertx.up.commune.config.Integration;
+import io.modello.atom.app.KIntegration;
 
 /**
  * ## 「Connector」顶层连接器
  *
  * ### 1. 基本介绍
  *
- * 在适配器{@link AbstractAdaptor}上追加集成配置{@link Integration}。
+ * 在适配器{@link AbstractAdaptor}上追加集成配置{@link KIntegration}。
  *
  * ### 2. 组件功能
  *
- * 提供集成实例，对应`I_SERVICE`表中的`configIntegration`属性设置集成配置{@link Integration}。
+ * 提供集成实例，对应`I_SERVICE`表中的`configIntegration`属性设置集成配置{@link KIntegration}。
  *
  * > 集成配置中包含了`debug`属性用于模拟数据接口。
  *
@@ -48,7 +48,7 @@ import io.vertx.up.commune.config.Integration;
  */
 public abstract class AbstractConnector extends AbstractAdaptor {
     /**
-     * 「合约」成员实例，`I_SERVICE`表中的`configIntegration`属性设置，关联{@link Integration}对象。
+     * 「合约」成员实例，`I_SERVICE`表中的`configIntegration`属性设置，关联{@link KIntegration}对象。
      *
      * 该实例是通过{@link Contract}注解赋值，配置结构如上述文档中所描述，下边是其中一个示例：
      *
@@ -77,14 +77,14 @@ public abstract class AbstractConnector extends AbstractAdaptor {
      * ```
      */
     @Contract
-    private transient Integration integration;
+    private transient KIntegration integration;
 
     /**
      * 返回当前系统中的集成配置引用实例。
      *
-     * @return {@link Integration}集成实例
+     * @return {@link KIntegration}集成实例
      */
-    protected Integration integration() {
+    protected KIntegration integration() {
         return this.integration;
     }
 }

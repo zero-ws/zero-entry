@@ -1,5 +1,6 @@
 package io.mature.extension.uca.commerce;
 
+import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.horizon.uca.cache.Cc;
 import io.mature.extension.refine.Ox;
@@ -12,7 +13,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.atom.refine.Ao;
 import io.vertx.up.atom.element.JSix;
-import io.vertx.up.atom.exchange.DFabric;
 import io.vertx.up.commune.record.Apt;
 import io.vertx.up.fn.Fn;
 import io.vertx.up.unity.Ux;
@@ -41,7 +41,7 @@ public class Arms {
             this.add(ChangeFlag.ADD);
         }
     };
-    private transient DFabric fabric;
+    private transient KDictAtom fabric;
 
     private Function<JsonArray, JsonArray> fnDefault;
     private Supplier<Future<JsonArray>> fnFetcher;
@@ -64,7 +64,7 @@ public class Arms {
         return this.dao;
     }
 
-    public <T extends Arms> T bind(final DFabric fabric) {
+    public <T extends Arms> T bind(final KDictAtom fabric) {
         this.fabric = fabric;
         return (T) this;
     }

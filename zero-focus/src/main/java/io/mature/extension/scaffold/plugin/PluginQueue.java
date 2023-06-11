@@ -1,5 +1,6 @@
 package io.mature.extension.scaffold.plugin;
 
+import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.spi.plugin.AfterPlugin;
 import io.horizon.spi.plugin.BeforePlugin;
 import io.horizon.spi.plugin.DataPlugin;
@@ -8,7 +9,6 @@ import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
-import io.vertx.up.atom.exchange.DFabric;
 import io.vertx.up.unity.Ux;
 import io.vertx.up.util.Ut;
 
@@ -25,13 +25,13 @@ import java.util.function.Function;
 @SuppressWarnings("unchecked")
 public class PluginQueue {
     private final transient DataAtom atom;
-    private transient DFabric fabric;
+    private transient KDictAtom fabric;
 
     PluginQueue(final DataAtom atom) {
         this.atom = atom;
     }
 
-    void bind(final DFabric fabric) {
+    void bind(final KDictAtom fabric) {
         this.fabric = fabric;
     }
 

@@ -3,13 +3,13 @@ package io.mature.extension.uca.plugin;
 import io.horizon.spi.modeler.Identifier;
 import io.horizon.spi.robin.Switcher;
 import io.mature.extension.refine.Ox;
+import io.modello.atom.normalize.KIdentity;
 import io.modello.specification.atom.HRule;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.atom.modeling.data.DataGroup;
-import io.vertx.up.commune.config.Identity;
 import io.vertx.up.eon.KName;
 import io.vertx.up.fn.Fn;
 import io.vertx.up.unity.Ux;
@@ -32,13 +32,13 @@ public class AtomSwitcher implements Switcher {
      * 动态 identifier
      */
     private final transient Identifier indent;
-    private final transient Identity identity;
+    private final transient KIdentity identity;
     private final transient JsonObject options = new JsonObject();
 
     /*
      * 不能是私有的构造函数，反射必须公有
      */
-    public AtomSwitcher(final Identity identity, final JsonObject options) {
+    public AtomSwitcher(final KIdentity identity, final JsonObject options) {
         final Class<?> instanceCls = identity.getIdentifierComponent();
         if (Objects.isNull(instanceCls)) {
             this.indent = null;

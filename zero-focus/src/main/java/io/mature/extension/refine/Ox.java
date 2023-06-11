@@ -12,6 +12,8 @@ import io.horizon.uca.log.Log;
 import io.horizon.uca.log.LogModule;
 import io.mature.extension.cv.em.TypeLog;
 import io.mature.extension.uca.code.Numeration;
+import io.modello.atom.app.KIntegration;
+import io.modello.atom.normalize.KIdentity;
 import io.modello.eon.VDBC;
 import io.modello.specification.HRecord;
 import io.modello.specification.action.HDao;
@@ -21,8 +23,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.atom.modeling.data.DataGroup;
 import io.vertx.up.commune.Envelop;
-import io.vertx.up.commune.config.Identity;
-import io.vertx.up.commune.config.Integration;
 import io.vertx.up.plugin.database.DataPool;
 import io.vertx.up.plugin.elasticsearch.ElasticSearchClient;
 import io.vertx.up.unity.Ux;
@@ -168,9 +168,9 @@ public final class Ox {
      *
      * @param atom {@link DataAtom} 模型定义
      *
-     * @return {@link Identity} 构造好的标识规则选择器
+     * @return {@link KIdentity} 构造好的标识规则选择器
      */
-    public static Identity pluginIdentifier(final DataAtom atom) {
+    public static KIdentity pluginIdentifier(final DataAtom atom) {
         return OxConfig.toIdentity(atom, OxConfig.toOptions());
     }
 
@@ -334,78 +334,78 @@ public final class Ox {
     /**
      * {@link JsonObject}模拟数据
      *
-     * @param integration {@link Integration} 集成配置对象
+     * @param integration {@link KIntegration} 集成配置对象
      * @param file        {@link String} 模拟数据读取文件
      * @param supplier    {@link Supplier} 真实执行器
      *
      * @return {@link JsonObject} 返回最终数据记录
      */
-    public static JsonObject mockJ(final Integration integration, final String file, final Supplier<JsonObject> supplier) {
+    public static JsonObject mockJ(final KIntegration integration, final String file, final Supplier<JsonObject> supplier) {
         return OxMocker.mockJ(integration, file, supplier);
     }
 
     /**
      * {@link JsonArray}模拟数据
      *
-     * @param integration {@link Integration} 集成配置对象
+     * @param integration {@link KIntegration} 集成配置对象
      * @param file        {@link String} 模拟数据读取文件
      * @param supplier    {@link Supplier} 真实执行器
      *
      * @return {@link JsonArray} 返回最终数据记录
      */
-    public static JsonArray mockA(final Integration integration, final String file, final Supplier<JsonArray> supplier) {
+    public static JsonArray mockA(final KIntegration integration, final String file, final Supplier<JsonArray> supplier) {
         return OxMocker.mockA(integration, file, supplier);
     }
 
     /**
      * {@link String}模拟数据
      *
-     * @param integration {@link Integration} 集成配置对象
+     * @param integration {@link KIntegration} 集成配置对象
      * @param file        {@link String} 模拟数据读取文件
      * @param supplier    {@link Supplier} 真实执行器
      *
      * @return {@link String} 返回最终数据记录
      */
-    public static String mockS(final Integration integration, final String file, final Supplier<String> supplier) {
+    public static String mockS(final KIntegration integration, final String file, final Supplier<String> supplier) {
         return OxMocker.mockS(integration, file, supplier);
     }
 
     /**
      * 「Async」{@link JsonObject}模拟数据
      *
-     * @param integration {@link Integration} 集成配置对象
+     * @param integration {@link KIntegration} 集成配置对象
      * @param file        {@link String} 模拟数据读取文件
      * @param supplier    {@link Supplier} 真实执行器
      *
      * @return {@link JsonObject} 返回最终数据记录
      */
-    public static Future<JsonObject> mockAsyncJ(final Integration integration, final String file, final Supplier<Future<JsonObject>> supplier) {
+    public static Future<JsonObject> mockAsyncJ(final KIntegration integration, final String file, final Supplier<Future<JsonObject>> supplier) {
         return OxMocker.mockAsyncJ(integration, file, supplier);
     }
 
     /**
      * 「Async」{@link JsonArray}模拟数据
      *
-     * @param integration {@link Integration} 集成配置对象
+     * @param integration {@link KIntegration} 集成配置对象
      * @param file        {@link String} 模拟数据读取文件
      * @param supplier    {@link Supplier} 真实执行器
      *
      * @return {@link JsonArray} 返回最终数据记录
      */
-    public static Future<JsonArray> mockAsyncA(final Integration integration, final String file, final Supplier<Future<JsonArray>> supplier) {
+    public static Future<JsonArray> mockAsyncA(final KIntegration integration, final String file, final Supplier<Future<JsonArray>> supplier) {
         return OxMocker.mockAsyncA(integration, file, supplier);
     }
 
     /**
      * 「Async」{@link String}模拟数据
      *
-     * @param integration {@link Integration} 集成配置对象
+     * @param integration {@link KIntegration} 集成配置对象
      * @param file        {@link String} 模拟数据读取文件
      * @param supplier    {@link Supplier} 真实执行器
      *
      * @return {@link String} 返回最终数据记录
      */
-    public static Future<String> mockAsyncS(final Integration integration, final String file, final Supplier<Future<String>> supplier) {
+    public static Future<String> mockAsyncS(final KIntegration integration, final String file, final Supplier<Future<String>> supplier) {
         return OxMocker.mockAsyncS(integration, file, supplier);
     }
 

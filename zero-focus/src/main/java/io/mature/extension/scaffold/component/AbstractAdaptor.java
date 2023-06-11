@@ -1,8 +1,11 @@
 package io.mature.extension.scaffold.component;
 
+import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KMapping;
 import io.horizon.exception.WebException;
 import io.horizon.exception.web._501NotSupportException;
 import io.horizon.spi.robin.Switcher;
+import io.modello.atom.normalize.KIdentity;
 import io.modello.specification.HRecord;
 import io.modello.specification.action.HDao;
 import io.modello.specification.atom.HRule;
@@ -14,11 +17,8 @@ import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.atom.refine.Ao;
 import io.vertx.mod.jet.uca.business.AbstractComponent;
 import io.vertx.up.annotations.Contract;
-import io.vertx.up.atom.exchange.BMapping;
-import io.vertx.up.atom.exchange.DFabric;
 import io.vertx.up.commune.ActIn;
 import io.vertx.up.commune.config.Database;
-import io.vertx.up.commune.config.Identity;
 import io.vertx.up.commune.config.XHeader;
 import io.vertx.up.eon.KName;
 import io.vertx.up.uca.adminicle.FieldMapper;
@@ -194,7 +194,7 @@ public abstract class AbstractAdaptor extends AbstractComponent {
      *
      * 基本逻辑：
      *
-     * - 如果{@link Identity}为null或内部配置的`identifierComponent`为null，则直接返回空。
+     * - 如果{@link KIdentity}为null或内部配置的`identifierComponent`为null，则直接返回空。
      * - 如果存在，则使用参数构造标识规则切换器。
      *
      * 参数结构：
@@ -211,10 +211,10 @@ public abstract class AbstractAdaptor extends AbstractComponent {
      * @return {@link Switcher}切换器引用
      */
     protected Switcher switcher() {
-        final Identity identity = this.identity();
+        final KIdentity identity = this.identity();
         if (Objects.isNull(identity) || Objects.isNull(identity.getIdentifierComponent())) {
             /*
-             * Identity 不合法
+             * KIdentity 不合法
              */
             return null;
         } else {
@@ -344,9 +344,9 @@ public abstract class AbstractAdaptor extends AbstractComponent {
      * - Epsilon：字典消费组件配置
      * - DualItem：字典映射配置
      *
-     * @return {@link DFabric} 字典翻译器
+     * @return {@link KDictAtom} 字典翻译器
      */
-    public DFabric fabric() {
+    public KDictAtom fabric() {
         return this.fabric(this.atom());
     }
 
@@ -359,10 +359,10 @@ public abstract class AbstractAdaptor extends AbstractComponent {
      *
      * @param atom 传入的{@link DataAtom}模型定义对象。
      *
-     * @return {@link DFabric} 字典翻译器
+     * @return {@link KDictAtom} 字典翻译器
      */
-    public DFabric fabric(final DataAtom atom) {
-        final BMapping mapping = this.mapping().child(atom.identifier());
+    public KDictAtom fabric(final DataAtom atom) {
+        final KMapping mapping = this.mapping().child(atom.identifier());
         if (Objects.nonNull(mapping)) {
             mapping.bind(atom.type());
         }

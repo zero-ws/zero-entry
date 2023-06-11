@@ -1,12 +1,12 @@
 package io.mature.extension.stellaris.vendor;
 
+import io.horizon.atom.datamation.KDictConfig;
+import io.horizon.atom.datamation.KMap;
 import io.horizon.spi.component.ExAmbientDictionary;
 import io.mature.extension.stellaris.OkA;
+import io.modello.atom.app.KIntegration;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
-import io.vertx.up.atom.exchange.BTree;
-import io.vertx.up.atom.exchange.DSetting;
-import io.vertx.up.commune.config.Integration;
 import io.vertx.up.unity.Ux;
 import io.vertx.up.util.Ut;
 
@@ -33,23 +33,23 @@ import io.vertx.up.util.Ut;
 class PartyB extends AbstractParty {
     private static final String ROOT = "runtime/";
     /**
-     * {@link DSetting}对象，字典翻译器配置。
+     * {@link KDictConfig}对象，字典翻译器配置。
      */
-    private final transient DSetting dict;
+    private final transient KDictConfig dict;
     /**
-     * {@link BTree}对象，字段映射器配置。
+     * {@link KMap}对象，字段映射器配置。
      */
-    private final transient BTree mapping;
+    private final transient KMap mapping;
     /**
      * {@link JsonObject}对象，服务配置，对应`ServiceConfig`字段，构造`options`。
      */
     private final transient JsonObject options;
-    private final transient Integration integration;
+    private final transient KIntegration integration;
 
     /*
      * 构造函数，CMDB专用配置组装器，配置根目录为`src/main/resources`目录，待使用工厂模式。
      */
-    PartyB(final OkA partyA, final Integration integration) {
+    PartyB(final OkA partyA, final KIntegration integration) {
         super(partyA);
         this.integration = integration;
         /*
@@ -57,14 +57,14 @@ class PartyB extends AbstractParty {
          */
         final String dict = this.buildPath("dict-config", integration);
         final String epsilon = this.buildPath("dict-epsilon", integration);
-        this.dict = new DSetting(Ut.ioJArray(dict))
+        this.dict = new KDictConfig(Ut.ioJArray(dict))
             .bind(Ux.dictEpsilon(Ut.ioJObject(epsilon)))
             .bind(ExAmbientDictionary.class);
         /*
          * Mapping
          */
         final String mapping = this.buildPath("mapping", integration);
-        this.mapping = new BTree(Ut.ioJObject(mapping));
+        this.mapping = new KMap(Ut.ioJObject(mapping));
         /*
          * Options
          */
@@ -72,13 +72,13 @@ class PartyB extends AbstractParty {
         this.options = Ut.ioJObject(options);
     }
 
-    private String buildPath(final String key, final Integration integration) {
+    private String buildPath(final String key, final KIntegration integration) {
         final String hit = key.replace("/", "");
         return ROOT + integration.getVendorConfig() + "/" + hit + "/" + integration.getVendor() + ".json";
     }
 
     @Override
-    public Integration configIntegration() {
+    public KIntegration configIntegration() {
         return this.integration;
     }
 
@@ -97,20 +97,20 @@ class PartyB extends AbstractParty {
     /**
      * 构造映射配置对象，专用执行字段映射处理。
      *
-     * @return {@link BTree}
+     * @return {@link KMap}
      */
     @Override
-    public BTree mapping() {
+    public KMap mapping() {
         return this.mapping;
     }
 
     /**
      * 构造字典翻译器专用配置
      *
-     * @return {@link Future}<{@link DSetting}>
+     * @return {@link Future}<{@link KDictConfig}>
      */
     @Override
-    protected Future<DSetting> configDict() {
+    protected Future<KDictConfig> configDict() {
         return Ux.future(this.dict);
     }
 

@@ -1,10 +1,12 @@
 package io.mature.extension.stellaris;
 
+import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.uca.log.Annal;
 import io.macrocosm.specification.program.HArk;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.stellaris.vendor.OkB;
 import io.modello.atom.app.KDS;
+import io.modello.atom.app.KIntegration;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -13,10 +15,8 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.error._417DataAtomNullException;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.ke.refine.Ke;
-import io.vertx.up.atom.exchange.DFabric;
 import io.vertx.up.atom.typed.UTenant;
 import io.vertx.up.commune.config.Database;
-import io.vertx.up.commune.config.Integration;
 import io.vertx.up.eon.KName;
 import io.vertx.up.unity.Ux;
 import io.vertx.up.util.Ut;
@@ -48,7 +48,7 @@ public class Ok implements OkA {
         this.tenant = Ut.deserialize(tenantData, UTenant.class);
         this.tenant.vendors().forEach(name -> {
             LOGGER.info("[ Ok ] Vendor {0} has been created!", name);
-            final Integration integration = this.tenant.integration(name);
+            final KIntegration integration = this.tenant.integration(name);
             this.vendors.put(name, OkB.connect(this, integration));
         });
     }
@@ -78,7 +78,7 @@ public class Ok implements OkA {
     /**
      * 「Async」根据传入的模型定义对象构造对应的字典翻译器。
      */
-    public static Future<DFabric> fabric(final DataAtom atom, final String bName) {
+    public static Future<KDictAtom> fabric(final DataAtom atom, final String bName) {
         if (Objects.isNull(atom)) {
             return Future.failedFuture(new _417DataAtomNullException(Ok.class));
         } else {

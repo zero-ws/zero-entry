@@ -1,15 +1,15 @@
 package io.mature.extension.stellaris.vendor;
 
+import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KDictConfig;
+import io.horizon.atom.datamation.KMapping;
+import io.horizon.atom.datamation.KMap;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
 import io.mature.extension.stellaris.OkA;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
-import io.vertx.up.atom.exchange.BMapping;
-import io.vertx.up.atom.exchange.BTree;
-import io.vertx.up.atom.exchange.DFabric;
-import io.vertx.up.atom.exchange.DSetting;
 import io.vertx.up.atom.typed.UTenant;
 import io.vertx.up.commune.config.Database;
 import io.vertx.up.eon.KName;
@@ -55,28 +55,28 @@ public abstract class AbstractParty implements OkB {
     /**
      * 「Abstract」子类必须实现的方法，用于构建字典翻译器专用配置
      *
-     * @return {@link Future}<{@link DSetting}>
+     * @return {@link Future}<{@link KDictConfig}>
      */
-    abstract protected Future<DSetting> configDict();
+    abstract protected Future<KDictConfig> configDict();
 
     /**
      * 「Async」根据统一标识符异步构造某一个模型的字典翻译器
      *
      * @param identifier {@link String} 传入的模型统一标识符
      *
-     * @return `{@link Future}<{@link DFabric}>`
+     * @return `{@link Future}<{@link KDictAtom}>`
      */
     @Override
-    public Future<DFabric> fabric(final String identifier) {
+    public Future<KDictAtom> fabric(final String identifier) {
         final MultiMap params = this.input(identifier);
         params.add(KName.CACHE_KEY, RapidKey.JOB_DIRECTORY);
         return this.configDict().compose(dict -> Ux.dictCalc(dict, params).compose(dictData -> {
-            final BTree mapping = this.mapping();
-            final BMapping mappingItem = mapping.child(identifier);
+            final KMap mapping = this.mapping();
+            final KMapping mappingItem = mapping.child(identifier);
             /*
              * DualItem
              */
-            final DFabric fabric = DFabric.create(mappingItem)
+            final KDictAtom fabric = KDictAtom.create(mappingItem)
                 .epsilon(dict.getEpsilon())
                 .dictionary(dictData);
             return Ux.future(fabric);

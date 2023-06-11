@@ -1,15 +1,15 @@
 package io.mature.extension.stellaris.vendor;
 
+import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KMap;
 import io.horizon.eon.VString;
 import io.horizon.specification.typed.TCopy;
 import io.mature.extension.stellaris.OkA;
 import io.mature.extension.stellaris.OkX;
+import io.modello.atom.app.KIntegration;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
-import io.vertx.up.atom.exchange.BTree;
-import io.vertx.up.atom.exchange.DFabric;
-import io.vertx.up.commune.config.Integration;
 import io.vertx.up.unity.Ux;
 
 /**
@@ -33,7 +33,7 @@ import io.vertx.up.unity.Ux;
  * |---:|:---|
  * |`io.vertx.mod.atom.jet.JtApp`|应用配置对象。|
  * |`io.vertx.up.commune.config.Database`|数据库配置对象。|
- * |`io.vertx.up.commune.config.Integration`|集成配置对象。|
+ * |`io.modello.atom.app.KIntegration`|集成配置对象。|
  * |`io.vertx.up.commune.exchange.DictFabric`|字典翻译器。|
  * |`io.vertx.up.commune.exchange.DualMapping`|字段映射器。|
  *
@@ -107,16 +107,16 @@ import io.vertx.up.unity.Ux;
  */
 public interface OkB extends OkX, TCopy<OkB> {
 
-    static OkB connect(final OkA okA, final Integration integration) {
+    static OkB connect(final OkA okA, final KIntegration integration) {
         return new PartyB(okA, integration);
     }
 
     /**
      * 集成配置对象读取方法。
      *
-     * @return {@link Integration}
+     * @return {@link KIntegration}
      */
-    Integration configIntegration();
+    KIntegration configIntegration();
 
     // ---------------- 服务配置 ---------------------
 
@@ -130,9 +130,9 @@ public interface OkB extends OkX, TCopy<OkB> {
     /**
      * 构造映射配置对象，专用执行字段映射处理。
      *
-     * @return {@link BTree}
+     * @return {@link KMap}
      */
-    BTree mapping();
+    KMap mapping();
 
     // ---------------- 字典和服务配置 ---------------------
 
@@ -141,9 +141,9 @@ public interface OkB extends OkX, TCopy<OkB> {
      *
      * 该字典翻译器使用默认配置（identifier = ""）
      *
-     * @return `{@link Future}<{@link DFabric}>`
+     * @return `{@link Future}<{@link KDictAtom}>`
      */
-    default Future<DFabric> fabric() {
+    default Future<KDictAtom> fabric() {
         return this.fabric(VString.EMPTY);
     }
 
@@ -152,9 +152,9 @@ public interface OkB extends OkX, TCopy<OkB> {
      *
      * @param atom {@link DataAtom} 传入的模型定义对象`io.vertx.mod.atom.modeling.building.DataAtom`
      *
-     * @return `{@link Future}<{@link DFabric}>`
+     * @return `{@link Future}<{@link KDictAtom}>`
      */
-    default Future<DFabric> fabric(final DataAtom atom) {
+    default Future<KDictAtom> fabric(final DataAtom atom) {
         return this.fabric(atom.identifier()).compose(fabric -> {
             fabric.mapping().bind(atom.type());
             return Ux.future(fabric);
@@ -166,7 +166,7 @@ public interface OkB extends OkX, TCopy<OkB> {
      *
      * @param identifier {@link String} 传入的模型统一标识符
      *
-     * @return `{@link Future}<{@link DFabric}>`
+     * @return `{@link Future}<{@link KDictAtom}>`
      */
-    Future<DFabric> fabric(String identifier);
+    Future<KDictAtom> fabric(String identifier);
 }

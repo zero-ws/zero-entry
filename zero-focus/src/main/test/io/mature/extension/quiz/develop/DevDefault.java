@@ -126,7 +126,7 @@ class DevDefault {
     }
 
     /*
-     * 6. Integration Dir ( zero-is )
+     * 6. KIntegration Dir ( zero-is )
      *
      * This folder occurs in tha latest version ( > 0.9 ), it stored integration default data
      *

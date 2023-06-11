@@ -3,11 +3,11 @@ package io.mature.extension.refine;
 import io.horizon.eon.VString;
 import io.mature.extension.cv.OxCv;
 import io.mature.extension.cv.em.TypeLog;
+import io.modello.atom.normalize.KIdentity;
 import io.modello.eon.VDBC;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.up.atom.element.JSix;
-import io.vertx.up.commune.config.Identity;
 import io.vertx.up.eon.KName;
 import io.vertx.up.util.Ut;
 
@@ -182,15 +182,15 @@ final class OxConfig {
      * @param atom    {@link DataAtom} 模型定义
      * @param options {@link JsonObject} 服务配置选项
      *
-     * @return {@link Identity} 构造好的标识规则选择器
+     * @return {@link KIdentity} 构造好的标识规则选择器
      */
-    static Identity toIdentity(final DataAtom atom, final JsonObject options) {
+    static KIdentity toIdentity(final DataAtom atom, final JsonObject options) {
         final String identifierCls = options.getString(VDBC.I_SERVICE.SERVICE_CONFIG.PLUGIN_IDENTIFIER);
         /*
-         * Identity 的静态构造
+         * KIdentity 的静态构造
          * 注：sigma 是必须的参数
          */
-        final Identity identity = new Identity();
+        final KIdentity identity = new KIdentity();
         identity.setIdentifier(atom.identifier());
         identity.setIdentifierComponent(Ut.clazz(identifierCls));
         identity.setSigma(atom.ark().sigma());

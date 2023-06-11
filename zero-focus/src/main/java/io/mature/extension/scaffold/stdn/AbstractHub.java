@@ -8,6 +8,7 @@ import io.mature.extension.scaffold.component.AbstractActor;
 import io.mature.extension.uca.commerce.Completer;
 import io.mature.extension.uca.commerce.CompleterDefault;
 import io.mature.extension.uca.log.TrackIo;
+import io.modello.atom.app.KIntegration;
 import io.modello.specification.action.HDao;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
@@ -16,7 +17,6 @@ import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.atom.refine.Ao;
 import io.vertx.up.commune.ActIn;
 import io.vertx.up.commune.ActOut;
-import io.vertx.up.commune.config.Integration;
 import io.vertx.up.eon.KName;
 import io.vertx.up.unity.Ux;
 import io.vertx.up.util.Ut;
@@ -31,7 +31,7 @@ import java.util.Objects;
  * 该组件为通道组件的顶层抽象组件，从ACTOR中继承，由于是ACTOR，所以包含：
  *
  * - 任务配置：{@link io.vertx.up.atom.worker.Mission}
- * - 集成配置：{@link io.vertx.up.commune.config.Integration}
+ * - 集成配置：{@link KIntegration}
  * - 数据库配置：{@link io.vertx.up.commune.config.Database}
  *
  * 除开上述配置以外，该组件中还新增了特殊成员配置
@@ -64,10 +64,10 @@ public class AbstractHub extends AbstractActor {
      * 下层子类实现该方法返回集成对象，从父类的`protected`开放成`public`模式提供给子类使用，并且在子类中
      * 开放该属性的访问域信息。
      *
-     * @return {@link io.vertx.up.commune.config.Integration} 集成对象
+     * @return {@link KIntegration} 集成对象
      */
     @Override
-    public Integration integration() {
+    public KIntegration integration() {
         return super.integration();
     }
 
