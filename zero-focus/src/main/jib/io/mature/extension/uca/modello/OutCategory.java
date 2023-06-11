@@ -1,6 +1,6 @@
 package io.mature.extension.uca.modello;
 
-import io.horizon.atom.common.Kv;
+import io.horizon.atom.program.Kv;
 import io.modello.specification.HRecord;
 import io.modello.specification.uca.OComponent;
 import io.vertx.core.json.JsonArray;

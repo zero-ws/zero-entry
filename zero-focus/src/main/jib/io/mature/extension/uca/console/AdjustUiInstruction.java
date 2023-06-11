@@ -8,7 +8,7 @@ import cn.vertxup.ui.domain.tables.pojos.UiColumn;
 import cn.vertxup.ui.domain.tables.pojos.UiField;
 import cn.vertxup.ui.domain.tables.pojos.UiForm;
 import cn.vertxup.ui.domain.tables.pojos.UiList;
-import io.horizon.atom.common.Refer;
+import io.horizon.atom.program.KRef;
 import io.macrocosm.specification.app.HApp;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.scaffold.console.AbstractInstruction;
@@ -159,8 +159,8 @@ public class AdjustUiInstruction extends AbstractInstruction {
              * Form -> 表单数据处理
              * List -> 列配置数据处理
              */
-            final Refer formRefer = new Refer();
-            final Refer listRefer = new Refer();
+            final KRef formRefer = new KRef();
+            final KRef listRefer = new KRef();
             final String sigma = app.option(KName.SIGMA);
             return this.uiForm(identifier, sigma)
                 .compose(formRefer::future)

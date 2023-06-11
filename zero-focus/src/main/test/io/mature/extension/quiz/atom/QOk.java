@@ -5,8 +5,8 @@ import io.horizon.uca.cache.Cc;
 import io.macrocosm.specification.program.HArk;
 import io.mature.extension.stellaris.OkA;
 import io.mature.extension.stellaris.vendor.OkB;
+import io.modello.atom.app.KGlobal;
 import io.vertx.core.json.JsonObject;
-import io.vertx.up.atom.typed.UTenant;
 import io.vertx.up.commune.config.Database;
 import io.vertx.up.util.Ut;
 
@@ -35,7 +35,7 @@ public class QOk implements OkA {
     }
 
     @Override
-    public UTenant partyA() {
+    public KGlobal partyA() {
         return this.ok.partyA().copy();
     }
 

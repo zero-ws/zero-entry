@@ -2,15 +2,15 @@ package io.mature.extension.stellaris.vendor;
 
 import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.atom.datamation.KDictConfig;
-import io.horizon.atom.datamation.KMapping;
 import io.horizon.atom.datamation.KMap;
+import io.horizon.atom.datamation.KMapping;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
 import io.mature.extension.stellaris.OkA;
+import io.modello.atom.app.KGlobal;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
-import io.vertx.up.atom.typed.UTenant;
 import io.vertx.up.commune.config.Database;
 import io.vertx.up.eon.KName;
 import io.vertx.up.uca.cache.RapidKey;
@@ -118,7 +118,7 @@ public abstract class AbstractParty implements OkB {
         final JsonObject params = new JsonObject();
         final HArk ark = this.partyA.configApp();
         if (Objects.isNull(ark)) {
-            final UTenant tenant = this.partyA.partyA();
+            final KGlobal tenant = this.partyA.partyA();
             final JsonObject application = tenant.getApplication();
             params.put(KName.SIGMA, application.getString(KName.SIGMA));
             params.put(KName.APP_ID, application.getString(KName.APP_ID));

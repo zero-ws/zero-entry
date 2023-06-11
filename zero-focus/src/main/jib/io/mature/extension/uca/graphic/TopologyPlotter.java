@@ -2,7 +2,7 @@ package io.mature.extension.uca.graphic;
 
 import cn.vertxup.ambient.domain.tables.daos.XCategoryDao;
 import cn.vertxup.ambient.domain.tables.pojos.XCategory;
-import io.horizon.atom.common.Refer;
+import io.horizon.atom.program.KRef;
 import io.horizon.eon.VString;
 import io.macrocosm.specification.app.HApp;
 import io.vertx.core.Future;
@@ -25,7 +25,7 @@ public class TopologyPlotter extends AbstractPlotter {
          * rl.device.relation -> edges
          */
         return this.drawAsync(recordId, relationId, () -> {
-            final Refer refer = new Refer();
+            final KRef refer = new KRef();
             /* 设备读取（节点）*/
             return this.dao(recordId).fetchAllAsync()
                 .compose(Ux::futureA).compose(refer::future)
@@ -51,7 +51,7 @@ public class TopologyPlotter extends AbstractPlotter {
                 final JsonObject criteria = new JsonObject();
                 criteria.put("categoryThird,!i", Ut.toJArray(keys));
                 /* 设备读取（节点） */
-                final Refer refer = new Refer();
+                final KRef refer = new KRef();
                 return this.dao(recordId).fetchAsync(criteria)
                     .compose(Ux::futureA).compose(refer::future)
                     /* 关系读取（边）*/

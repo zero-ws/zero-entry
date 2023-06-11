@@ -1,6 +1,6 @@
 package io.mature.extension.uca.console;
 
-import io.horizon.atom.common.Refer;
+import io.horizon.atom.program.KRef;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
 import io.mature.extension.refine.Ox;
@@ -54,7 +54,7 @@ public class IndexInstruction extends AbstractInstruction {
                 final HDao dao = Ox.toDao(app.option(KName.APP_ID), identifier);
 
                 final ElasticSearchClient client = ElasticSearchInfix.getClient();
-                final Refer recordRef = new Refer();
+                final KRef recordRef = new KRef();
                 /* 客户端 */
                 return dao.fetchAllAsync()
                     /* 跳过索引创建流程 */

@@ -6,6 +6,7 @@ import io.macrocosm.specification.program.HArk;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.stellaris.vendor.OkB;
 import io.modello.atom.app.KDS;
+import io.modello.atom.app.KGlobal;
 import io.modello.atom.app.KIntegration;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
@@ -15,7 +16,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.error._417DataAtomNullException;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.ke.refine.Ke;
-import io.vertx.up.atom.typed.UTenant;
 import io.vertx.up.commune.config.Database;
 import io.vertx.up.eon.KName;
 import io.vertx.up.unity.Ux;
@@ -37,7 +37,7 @@ public class Ok implements OkA {
      * - VENDOR 乙方
      */
     private transient final ConcurrentMap<String, OkB> vendors = new ConcurrentHashMap<>();
-    private final transient UTenant tenant;
+    private final transient KGlobal tenant;
     /*
      * 解析结果
      */
@@ -45,7 +45,7 @@ public class Ok implements OkA {
     private transient boolean initialized = false;
 
     private Ok(final JsonObject tenantData) {
-        this.tenant = Ut.deserialize(tenantData, UTenant.class);
+        this.tenant = Ut.deserialize(tenantData, KGlobal.class);
         this.tenant.vendors().forEach(name -> {
             LOGGER.info("[ Ok ] Vendor {0} has been created!", name);
             final KIntegration integration = this.tenant.integration(name);
@@ -157,7 +157,7 @@ public class Ok implements OkA {
     }
 
     @Override
-    public UTenant partyA() {
+    public KGlobal partyA() {
         return this.tenant;
     }
 

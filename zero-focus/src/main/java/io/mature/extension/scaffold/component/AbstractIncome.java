@@ -1,7 +1,7 @@
 package io.mature.extension.scaffold.component;
 
 import cn.vertxup.jet.domain.tables.pojos.IService;
-import io.horizon.atom.common.Refer;
+import io.horizon.atom.program.KRef;
 import io.mature.extension.refine.Ox;
 import io.modello.specification.action.HDao;
 import io.modello.specification.atom.HRule;
@@ -122,7 +122,7 @@ public abstract class AbstractIncome extends AbstractJob implements JobIncome {
      * @return {@link Future}引用容器
      */
     @Override
-    public Future<Refer> underway() {
+    public Future<KRef> underway() {
         /*
          * Parameters
          */
