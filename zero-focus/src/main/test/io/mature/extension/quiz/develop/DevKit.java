@@ -3,7 +3,6 @@ package io.mature.extension.quiz.develop;
 import io.horizon.eon.VString;
 import io.horizon.uca.log.Annal;
 import io.mature.extension.quiz.oclick.InstClick;
-import io.modello.specification.atom.HAtom;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 import io.vertx.mod.ke.booter.Bt;
@@ -131,11 +130,6 @@ public class DevKit {
         Objects.requireNonNull(input, output);
         final String hashKey = Ut.encryptMD5(input + VString.COLON + output);
         return DevDefault.CC_MODELLER.pick(() -> new DevModeller(input, output), hashKey);
-    }
-    // ----------------------- DevReport output -------------------------
-
-    public static void outAtom(final HAtom atom) {
-        DevReport.outAtom(atom);
     }
 
     // ----------------------- Inst Method -------------------------
