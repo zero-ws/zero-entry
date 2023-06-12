@@ -4,8 +4,8 @@ import io.horizon.eon.em.Environment;
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
 import io.mature.exploit.stellar.OkA;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.exploit.stellar.PartyA;
 import io.mature.extension.quiz.atom.QModel;
 import io.mature.extension.quiz.atom.QRequest;
@@ -71,7 +71,7 @@ public abstract class AbstractPlatform extends JooqBase {
     @Before
     @SuppressWarnings("all")
     public void setUp(final TestContext context, final Async async) {
-        Ok.ok().onSuccess(initialized -> {
+        OkOld.ok().onSuccess(initialized -> {
             this.ok = PartyA.create(initialized, this.environment);
             this.logger().info("[ Qz ] Qz Framework has been initialized!!! Env = `{0}`", this.environment);
             final boolean runnable = this.setUpAfter(context, async);

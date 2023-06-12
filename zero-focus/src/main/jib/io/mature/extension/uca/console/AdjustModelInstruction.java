@@ -1,7 +1,7 @@
 package io.mature.extension.uca.console;
 
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.migration.MigrateStep;
 import io.mature.extension.migration.restore.MetaLimit;
 import io.mature.extension.scaffold.console.AbstractInstruction;
@@ -20,7 +20,7 @@ public class AdjustModelInstruction extends AbstractInstruction {
     @Override
     public Future<TermStatus> executeAsync(final CommandInput args) {
         final String appName = this.inString(args, "a");
-        return Ok.vendor(appName).compose(okB -> {
+        return OkOld.vendor(appName).compose(okB -> {
             final HArk ark = okB.configApp();
             /* 修正模型数据专用 */
             final MigrateStep step = new MetaLimit(this.environment);

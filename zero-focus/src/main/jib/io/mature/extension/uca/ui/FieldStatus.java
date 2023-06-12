@@ -15,7 +15,7 @@ package io.mature.extension.uca.ui;
  *
  * |比对结果|UI配置|模型定义|
  * |:---|---|---|
- * |MATCH|Ok|Ok|
+ * |MATCH|OkOld|OkOld|
  * |INVALID|有定义|x|
  * |REMAIN|有定义|--|
  *

@@ -6,7 +6,7 @@ import io.horizon.eon.em.Environment;
 import io.horizon.exception.internal.EmptyIoException;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.error._501EnvironmentException;
 import io.mature.extension.refine.Ox;
 import io.vertx.core.Future;
@@ -43,7 +43,7 @@ public abstract class AbstractInstruction extends AbstractCommander {
         final String filename = this.inString(args, "f");
         try {
             final JsonObject config = Ut.ioJObject(filename);
-            return Ok.vendor(appName).compose(okB -> {
+            return OkOld.vendor(appName).compose(okB -> {
                 final HArk app = okB.configApp();
                 return executor.apply(app, config);
             });
@@ -104,7 +104,7 @@ public abstract class AbstractInstruction extends AbstractCommander {
         /*
          * 初始化应用，后期可直接调用 this.app
          */
-        return Ok.vendor(appName).compose(okB -> {
+        return OkOld.vendor(appName).compose(okB -> {
             final HArk ark = okB.configApp();
             final JsonObject attachedJson = Objects.isNull(attached) ? new JsonObject() : attached;
 

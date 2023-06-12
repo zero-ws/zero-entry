@@ -8,8 +8,8 @@ import io.horizon.eon.em.Environment;
 import io.horizon.fn.Actuator;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
 import io.mature.exploit.stellar.OkA;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.migration.MigrateStep;
 import io.mature.extension.migration.restore.MetaLimit;
 import io.mature.extension.refine.Ox;
@@ -60,7 +60,7 @@ public class DevModeller {
     }
 
     public void preprocess(final Actuator actuator) {
-        Ok.on(handler -> {
+        OkOld.on(handler -> {
             final OkA partyA = handler.result();
             final HArk ark = partyA.configApp();
             final HApp app = ark.app();
@@ -108,7 +108,7 @@ public class DevModeller {
     }
 
     public void initialize(final Actuator actuator) {
-        Ok.on(handler -> {
+        OkOld.on(handler -> {
             final OkA partyA = handler.result();
             final HArk ark = partyA.configApp();
             final HApp app = ark.app();

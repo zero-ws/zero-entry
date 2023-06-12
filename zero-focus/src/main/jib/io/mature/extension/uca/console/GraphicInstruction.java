@@ -1,7 +1,7 @@
 package io.mature.extension.uca.console;
 
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.scaffold.console.AbstractInstruction;
 import io.mature.extension.uca.graphic.Plotter;
 import io.mature.extension.uca.graphic.TopologyPlotter;
@@ -23,7 +23,7 @@ public class GraphicInstruction extends AbstractInstruction {
         /*
          * 绘图仪
          */
-        return Ok.vendor(appName).compose(okB -> {
+        return OkOld.vendor(appName).compose(okB -> {
             final HArk app = okB.configApp();
             final Plotter plotter = new TopologyPlotter();
             plotter.bind(app);

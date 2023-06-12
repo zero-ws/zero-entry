@@ -3,7 +3,7 @@ package io.mature.extension.uca.console;
 import io.horizon.atom.program.KRef;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.exploit.stellar.vendor.OkB;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.scaffold.console.AbstractInstruction;
@@ -39,7 +39,7 @@ public class IndexInstruction extends AbstractInstruction {
     }
 
     private Future<Boolean> executeAsync(final String identifier, final String appName) {
-        return Ok.ok().compose(okA -> {
+        return OkOld.ok().compose(okA -> {
             final HArk ark = okA.configApp();
             final HApp app = ark.app();
 

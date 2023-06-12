@@ -4,7 +4,7 @@ import io.horizon.eon.VPath;
 import io.horizon.eon.VString;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.scaffold.console.AbstractInstruction;
 import io.modello.dynamic.modular.file.AoFile;
 import io.modello.dynamic.modular.file.ExcelReader;
@@ -37,9 +37,9 @@ public class JsonInstruction extends AbstractInstruction {
          * appName为null，直接获取app
          */
         if (appName == null) {
-            return Ok.app().compose(ok -> this.defaultValue(input, ok));
+            return OkOld.app().compose(ok -> this.defaultValue(input, ok));
         } else {
-            return Ok.vendor(appName).compose(okB -> this.defaultValue(input, okB.configApp()));
+            return OkOld.vendor(appName).compose(okB -> this.defaultValue(input, okB.configApp()));
         }
     }
 

@@ -92,10 +92,10 @@ import static io.mature.extension.refine.Ox.LOG;
  *
  * |组件名|数据库配置|集成配置|任务配置|
  * |:---|---|---|---|
- * |AbstractAdaptor|Ok|x|x|
- * |AbstractConnector|Ok|Ok|x|
- * |AbstractDirector|Ok|x|Ok|
- * |AbstractActor|Ok|Ok|Ok|
+ * |AbstractAdaptor|OkOld|x|x|
+ * |AbstractConnector|OkOld|OkOld|x|
+ * |AbstractDirector|OkOld|x|OkOld|
+ * |AbstractActor|OkOld|OkOld|OkOld|
  *
  * @author <a href="http://www.origin-x.cn">Lang</a>
  */

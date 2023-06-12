@@ -1,6 +1,7 @@
 package io.mature.extension.quiz.develop;
 
 import cn.vertxup.ambient.domain.tables.daos.XMenuDao;
+import io.horizon.eon.VSpec;
 import io.horizon.eon.VValue;
 import io.mature.extension.cv.em.MenuType;
 import io.vertx.core.Future;
@@ -94,7 +95,7 @@ class DevMenu {
     static Future<Boolean> menuOutput(final ConcurrentMap<String, JsonArray> menuMap,
                                       final String root) {
         menuMap.forEach((role, data) -> {
-            final String outFile = DevDefault.pathMenu(root, role);
+            final String outFile = VSpec.Web.init.permission.ui_menu.of(root, role); // DevDefault.pathMenu(root, role);
             LOG.Shell.info(DevKit.class, "[ Dev ] File output: {0}", outFile);
             final JsonObject dataRole = new JsonObject();
             dataRole.put(KName.NAME, data);
@@ -104,7 +105,7 @@ class DevMenu {
     }
 
     private static JsonArray buildRequired(final String role) {
-        final JsonArray required = DevDefault.pathMenu(role);
+        final JsonArray required = Ut.ioJArray(VSpec.Web.init.permission.ui_menu.role.of(role)); // DevDefault.pathMenu(role);
         final JsonArray normalized = new JsonArray();
         Ut.itJArray(required, String.class, (menu, index) -> normalized.add(menu.trim()));
         return normalized;

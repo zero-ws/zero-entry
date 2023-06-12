@@ -1,6 +1,6 @@
 package io.mature.extension.uca.console;
 
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.scaffold.console.AbstractInstruction;
 import io.vertx.core.Future;
 import io.vertx.up.plugin.neo4j.Neo4jClient;
@@ -16,7 +16,7 @@ import io.vertx.up.unity.Ux;
 public class ResetNeo4jInstruction extends AbstractInstruction {
     @Override
     public Future<TermStatus> executeAsync(final CommandInput args) {
-        return Ok.ok().compose(ok -> {
+        return OkOld.ok().compose(ok -> {
             final String group = this.inString(args, "g");
             /* 默认分组：__VERTX_ZERO__ */
             final Neo4jClient client = Neo4jInfix.getClient().connect(group);

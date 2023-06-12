@@ -3,7 +3,7 @@ package io.mature.extension.uca.console;
 import cn.vertxup.ambient.service.application.InitStub;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.migration.MigrateStep;
 import io.mature.extension.migration.restore.MetaLimit;
 import io.mature.extension.refine.Ox;
@@ -26,9 +26,9 @@ public class InitInstruction extends AbstractInstruction {
          * appName为null，直接获取app
          */
         if (appName == null) {
-            return Ok.app().compose(this::defaultValue);
+            return OkOld.app().compose(this::defaultValue);
         } else {
-            return Ok.vendor(appName).compose(okB -> this.defaultValue(okB.configApp()));
+            return OkOld.vendor(appName).compose(okB -> this.defaultValue(okB.configApp()));
         }
     }
 

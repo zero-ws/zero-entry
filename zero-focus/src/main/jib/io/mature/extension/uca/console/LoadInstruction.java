@@ -1,6 +1,6 @@
 package io.mature.extension.uca.console;
 
-import io.mature.exploit.stellar.Ok;
+import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.scaffold.console.AbstractInstruction;
 import io.vertx.core.Future;
 import io.vertx.mod.ke.booter.Bt;
@@ -25,7 +25,7 @@ public class LoadInstruction extends AbstractInstruction {
         } else {
             oob = isOob;
         }
-        return Ok.app().compose(ok -> Bt.initAsync("init/oob/", oob).compose(done -> {
+        return OkOld.app().compose(ok -> Bt.initAsync("init/oob/", oob).compose(done -> {
             Sl.output("您的元数据仓库已重置初始化完成！重置结果：{0}", done);
             return Ux.future(done ? TermStatus.SUCCESS : TermStatus.FAILURE);
         }));

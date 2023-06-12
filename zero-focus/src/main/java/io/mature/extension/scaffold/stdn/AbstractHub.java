@@ -362,10 +362,10 @@ public class AbstractHub extends AbstractActor {
      *
      * |方法名|单参JsonObject|多参JsonArray|备注|
      * |:---|---|---|:---|
-     * |create|Ok|Ok|创建/批量创建|
-     * |update|Ok|Ok|更新/批量更新|
-     * |remove|Ok|Ok|删除/批量删除|
-     * |find|Ok|Ok|读取/批量读取|
+     * |create|OkOld|OkOld|创建/批量创建|
+     * |update|OkOld|OkOld|更新/批量更新|
+     * |remove|OkOld|OkOld|删除/批量删除|
+     * |find|OkOld|OkOld|读取/批量读取|
      *
      * @return {@link Completer}
      */
