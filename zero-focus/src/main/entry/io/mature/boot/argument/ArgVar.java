@@ -1,4 +1,4 @@
-package io.mature.boot.atom;
+package io.mature.boot.argument;
 
 import io.horizon.atom.program.KVar;
 
@@ -14,19 +14,19 @@ import io.horizon.atom.program.KVar;
  *
  * @author lang : 2023-06-11
  */
-public class ArgVariable extends KVar {
+public class ArgVar extends KVar {
 
     private Object valueDefault;
 
-    private ArgVariable(final String name) {
+    private ArgVar(final String name) {
         super(name);
     }
 
-    public static ArgVariable of(final String name) {
-        return new ArgVariable(name);
+    public static ArgVar of(final String name) {
+        return new ArgVar(name);
     }
 
-    public ArgVariable valueDefault(final Object valueDefault) {
+    public ArgVar valueDefault(final Object valueDefault) {
         this.valueDefault = valueDefault;
         return this;
     }

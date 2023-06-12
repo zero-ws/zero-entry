@@ -19,8 +19,8 @@ package io.mature.extension.cv.em;
  * ```java
  * // <pre><code class="java">
  *     // 数据库错误日志生成
- *     static XLog database(final Class<?> clazz, final DataAtom atom, final Throwable ex) {
- *         final XLog log = KoTool.error(clazz, atom, ex);
+ *     static XLog database(final Class<?> clazz, final DataAtom argument, final Throwable ex) {
+ *         final XLog log = KoTool.error(clazz, argument, ex);
  *         log.setType(TypeLog.DATABASE_ERROR.name());
  *         return log;
  *     }

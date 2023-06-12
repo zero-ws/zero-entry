@@ -241,7 +241,7 @@ public abstract class AbstractAdaptor extends AbstractComponent {
      * - 数据库实例{@link Database}。
      * - 模型定义{@link DataAtom}。
      *
-     * > 如果系统中未配置`identifier`属性——即通道和模型未绑定，则调用`this.atom()`执行运算修改`this.internalAtom`再构造数据库访问器。
+     * > 如果系统中未配置`identifier`属性——即通道和模型未绑定，则调用`this.argument()`执行运算修改`this.internalAtom`再构造数据库访问器。
      *
      * @return {@link HDao}数据库访问器
      */

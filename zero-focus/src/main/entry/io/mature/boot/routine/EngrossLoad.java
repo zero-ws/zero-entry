@@ -1,9 +1,10 @@
 package io.mature.boot.routine;
 
 import io.horizon.uca.boot.KLauncher;
-import io.mature.boot.atom.ArgLoad;
+import io.mature.boot.argument.ArgLoad;
 import io.vertx.boot.supply.Electy;
 import io.vertx.core.Vertx;
+import io.vertx.mod.supply.DataImport;
 import io.vertx.up.eon.KName;
 import io.vertx.up.util.Ut;
 
@@ -17,7 +18,7 @@ import static io.vertx.mod.ke.refine.Ke.LOG;
  *
  * @author lang : 2023-06-10
  */
-public class LoadApplication {
+public class EngrossLoad {
 
     public static void run(final Class<?> clazz, final String... args) {
         /*
@@ -31,15 +32,6 @@ public class LoadApplication {
         final Boolean oob = input.value("oob");
         final String prefix = input.value(KName.PREFIX);
 
-
-        /*
-         *  路径构造，此处路径构造必须是 Production
-         *  由于 inst 工具构造的所有信息都是在 nd-app 目录下执行（及IDEA运行时的Work目录）
-         *  1）开发路径：src/main/resources/
-         *  2）生产路径：target/（运行的PWD路径）
-         *  如果此处使用开发路径会出现无法导入数据情况，而开发时的路径只有在特殊场景使用
-         *  - 直接使用 IDEA 运行此程序
-         */
         final String vPath = Ut.ioPath(path, input.environment());
         LOG.Ke.info(clazz, """
                 信息说明
@@ -54,6 +46,15 @@ public class LoadApplication {
         final KLauncher<Vertx> container = KLauncher.create(clazz, args);
         container.start(Electy.whenInstruction((vertx, config) -> {
 
+            // 构造数据导入器
+            final DataImport importer = DataImport.of(vertx);
+            if (oob) {
+                // 开启 OOB      ---> land
+                importer.land(vPath, prefix);
+            } else {
+                // 不开启 OOB   ---> load
+                importer.load(vPath, prefix);
+            }
         }));
     }
 }

@@ -42,7 +42,7 @@ public interface HWay<T, ID> {
      * 二选一的重写方法
      *
      * 方法一：直接重写顶层主方法`Future<ActOut> transferAsync(final ActIn request)`
-     * 方法二：重写当前方法`(final Apt Apt, final ActIn request, final DataAtom atom)`（带比对结果）
+     * 方法二：重写当前方法`(final Apt Apt, final ActIn request, final DataAtom argument)`（带比对结果）
      *
      * T = JsonObject / JsonArray
      *

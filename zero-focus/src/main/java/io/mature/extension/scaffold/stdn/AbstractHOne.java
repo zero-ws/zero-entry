@@ -161,7 +161,7 @@ public abstract class AbstractHOne extends AbstractHub implements HWay<JsonObjec
     /**
      * 「Async」动态`AoDao`数据访问器
      *
-     * 内部调用`atom(JsonObject)`方法切换动态模型，然后使用动态模型构造`AoDao`的动态数据访问器。
+     * 内部调用`argument(JsonObject)`方法切换动态模型，然后使用动态模型构造`AoDao`的动态数据访问器。
      *
      * @param input {@link io.vertx.core.json.JsonObject} 数据记录
      *

@@ -1,8 +1,8 @@
 package io.mature.boot.supply;
 
 import io.horizon.eon.VPath;
-import io.horizon.eon.VSpec;
 import io.horizon.eon.VString;
+import io.horizon.eon.spec.VWeb;
 import io.modello.atom.app.KIntegration;
 
 import java.util.Objects;
@@ -18,7 +18,7 @@ class EIo {
         /*
          * runtime/{vendor}/{hit}/{vendor}.json
          */
-        return VSpec.Web.RUNTIME + VString.SLASH
+        return VWeb.RUNTIME + VString.SLASH
             + integration.getVendorConfig() + VString.SLASH
             + hit + VString.SLASH
             + integration.getVendor() + VString.DOT + VPath.SUFFIX.JSON;

@@ -1,4 +1,4 @@
-package io.mature.boot.atom;
+package io.mature.boot.argument;
 
 import io.horizon.eon.VString;
 import io.vertx.up.eon.KName;
@@ -11,22 +11,22 @@ import java.util.concurrent.ConcurrentMap;
  * @author lang : 2023-06-11
  */
 public class ArgLoad extends ArgIn {
-    private final ConcurrentMap<String, ArgVariable> stored = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, ArgVar> stored = new ConcurrentHashMap<>();
 
     private ArgLoad(final String[] args) {
         super(args);
         {
             // 0 = path
-            this.stored.put(KName.PATH, ArgVariable
+            this.stored.put(KName.PATH, ArgVar
                 .of(KName.PATH)
                 .valueDefault("init/oob"));
             // 1 = oob
-            this.stored.put("oob", ArgVariable
+            this.stored.put("oob", ArgVar
                 .of("oob")
                 .valueDefault(Boolean.TRUE)
                 .bind(Boolean.class));
             // 2 = prefix
-            this.stored.put(KName.PREFIX, ArgVariable
+            this.stored.put(KName.PREFIX, ArgVar
                 .of(KName.PREFIX)
                 .valueDefault(VString.EMPTY));
         }
@@ -52,7 +52,7 @@ public class ArgLoad extends ArgIn {
     }
 
     @Override
-    protected ConcurrentMap<String, ArgVariable> definition() {
+    protected ConcurrentMap<String, ArgVar> definition() {
         return this.stored;
     }
 }

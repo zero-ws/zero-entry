@@ -4,11 +4,11 @@ import io.horizon.eon.em.Environment;
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
+import io.mature.exploit.mock.test.QAsk;
+import io.mature.exploit.mock.test.QRequest;
 import io.mature.exploit.stellar.OkA;
 import io.mature.exploit.stellar.OkOld;
 import io.mature.exploit.stellar.PartyA;
-import io.mature.extension.quiz.atom.QModel;
-import io.mature.extension.quiz.atom.QRequest;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.uca.elasticsearch.EsIndex;
 import io.mature.extension.uca.graphic.Plotter;
@@ -152,7 +152,7 @@ public abstract class AbstractPlatform extends JooqBase {
      *     }
      * }
      */
-    protected QModel inData(final String filename) {
+    protected QAsk inData(final String filename) {
         final JsonObject raw = this.ioJObject(filename);
         final String identifier = raw.getString("identifier");
         final Object dataPart = raw.getValue("data");
@@ -160,25 +160,25 @@ public abstract class AbstractPlatform extends JooqBase {
         return this.inData(identifier, key, dataPart);
     }
 
-    protected QModel inData(final String identifier, final String key) {
+    protected QAsk inData(final String identifier, final String key) {
         return this.inData(identifier, key, null);
     }
 
-    protected QModel inData(final String identifier, final Object dataPart) {
+    protected QAsk inData(final String identifier, final Object dataPart) {
         return this.inData(identifier, null, dataPart);
     }
 
-    protected QModel inData(final String identifier, final String key, final Object dataPart) {
-        final QModel input;
+    protected QAsk inData(final String identifier, final String key, final Object dataPart) {
+        final QAsk input;
         if (dataPart instanceof JsonArray) {
-            input = new QModel(this.atom(identifier), (JsonArray) dataPart);
+            input = new QAsk(this.atom(identifier), (JsonArray) dataPart);
         } else if (dataPart instanceof JsonObject) {
-            input = new QModel(this.atom(identifier), (JsonObject) dataPart);
+            input = new QAsk(this.atom(identifier), (JsonObject) dataPart);
         } else {
             if (Ut.isNotNil(key)) {
-                input = new QModel(this.atom(identifier), key);
+                input = new QAsk(this.atom(identifier), key);
             } else {
-                throw new RuntimeException("构造 QModel 异常，检查测试相关配置！");
+                throw new RuntimeException("构造 QAsk 异常，检查测试相关配置！");
             }
         }
         return input;
@@ -217,19 +217,19 @@ public abstract class AbstractPlatform extends JooqBase {
 
     // -------------------- 子类专用 ---------------------
     protected <T> Consumer<String> tcDao(final TestContext context,
-                                         final BiFunction<QModel, HDao, Future<T>> consumer,
+                                         final BiFunction<QAsk, HDao, Future<T>> consumer,
                                          final Consumer<T> callback) {
         return filename -> {
-            final QModel model = this.inData(filename);
+            final QAsk model = this.inData(filename);
             final HDao dao = this.dbDao(model.identifier());
             this.tcAsync(context, consumer.apply(model, dao), callback);
         };
     }
 
     protected <T> Consumer<String> tcDao(final TestContext context,
-                                         final BiFunction<QModel, HDao, Future<T>> consumer) {
+                                         final BiFunction<QAsk, HDao, Future<T>> consumer) {
         return filename -> {
-            final QModel model = this.inData(filename);
+            final QAsk model = this.inData(filename);
             final HDao dao = this.dbDao(model.identifier());
             this.tcAsync(context, consumer.apply(model, dao),
                 actual -> this.logger().info("[ Qz ] 执行完成：{0}", actual));

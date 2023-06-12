@@ -106,7 +106,7 @@ public abstract class AbstractHMore extends AbstractHub implements HWay<JsonArra
     }
 
     /**
-     * 动态 atom / dao 专用方法，可切换分组信息。
+     * 动态 argument / dao 专用方法，可切换分组信息。
      *
      * 基础执行流程
      *

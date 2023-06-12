@@ -3,7 +3,7 @@ package io.mature.extension.quiz;
 import io.horizon.eon.VString;
 import io.horizon.spi.jet.JtChannel;
 import io.macrocosm.specification.app.HApp;
-import io.mature.extension.quiz.atom.QRequest;
+import io.mature.exploit.mock.test.QRequest;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpMethod;

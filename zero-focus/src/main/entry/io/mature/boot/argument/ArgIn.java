@@ -1,4 +1,4 @@
-package io.mature.boot.atom;
+package io.mature.boot.argument;
 
 import io.horizon.eon.VValue;
 import io.horizon.eon.em.Environment;
@@ -37,14 +37,14 @@ public abstract class ArgIn {
             if ((idx + 1) < args.length) {
                 final String name = names.get(idx);
                 final String value = args[idx];
-                final ArgVariable var = this.definition().get(name);
+                final ArgVar var = this.definition().get(name);
                 var.value(this.value(var, value));
             }
         }
     }
 
     @SuppressWarnings("unchecked")
-    private <T> T value(final ArgVariable var, final String value) {
+    private <T> T value(final ArgVar var, final String value) {
         final Class<?> type = var.type();
         if (Environment.class == type) {
             return (T) Ut.toEnum(value, Environment.class);
@@ -77,7 +77,7 @@ public abstract class ArgIn {
      *
      * @return {@link java.util.concurrent.ConcurrentMap}
      */
-    protected ConcurrentMap<String, ArgVariable> definition() {
+    protected ConcurrentMap<String, ArgVar> definition() {
         return new ConcurrentHashMap<>();
     }
 
