@@ -2,6 +2,7 @@ package io.mature.boot.argument;
 
 import io.horizon.eon.VValue;
 import io.horizon.eon.em.Environment;
+import io.horizon.runtime.Macrocosm;
 import io.vertx.up.util.Ut;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 public abstract class ArgIn {
 
-    private Environment environment = Environment.Production;
+    private Environment environment;
 
     /**
      * 根据子类提供的两个核心方法解析流程
@@ -40,6 +41,11 @@ public abstract class ArgIn {
                 final ArgVar var = this.definition().get(name);
                 var.value(this.value(var, value));
             }
+        }
+        {
+            // 环境变量计算
+            final String envValue = Ut.envWith(Macrocosm.ZERO_ENV, Environment.Production.name());
+            this.environment = Ut.toEnum(envValue, Environment.class);
         }
     }
 

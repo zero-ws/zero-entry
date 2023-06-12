@@ -17,7 +17,7 @@ public class EngrossConsole {
         final KLauncher<Vertx> container = KLauncher.create(clazz, args);
         container.start(Electy.whenContainer((vertx, config) ->
             ConsoleFramework.start(vertx)
-                .bind(command -> VertxApplication.run(clazz, args))
+                .bind(command -> VertxApplication.runInternal(vertx, config))
                 .run(args)
         ));
     }

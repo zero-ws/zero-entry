@@ -34,7 +34,7 @@ public class ArgVar extends KVar {
     @Override
     @SuppressWarnings("all")
     public <T> T value() {
-        final Object value = this.value();
+        final Object value = super.value();
         return null == value ? (T) this.valueDefault : (T) value;
     }
 }

@@ -4,6 +4,7 @@ import io.horizon.eon.VString;
 import io.vertx.up.eon.KName;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -37,9 +38,12 @@ public class ArgLoad extends ArgIn {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public <T> T value(final String name) {
-        return (T) this.stored.getOrDefault(name, null);
+        final ArgVar var = this.stored.getOrDefault(name, null);
+        if (Objects.isNull(var)) {
+            return null;
+        }
+        return var.value();
     }
 
     @Override
