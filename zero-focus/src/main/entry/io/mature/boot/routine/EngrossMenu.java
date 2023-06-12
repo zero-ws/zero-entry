@@ -3,7 +3,6 @@ package io.mature.boot.routine;
 import io.horizon.uca.boot.KLauncher;
 import io.mature.boot.argument.ArgMenu;
 import io.mature.exploit.atom.QSiteMap;
-import io.vertx.boot.supply.Electy;
 import io.vertx.core.Vertx;
 import io.vertx.mod.ke.refine.Ke;
 import io.vertx.up.eon.KName;
@@ -17,7 +16,7 @@ public class EngrossMenu {
 
         // 构造启动器（构造命令启动器）
         final KLauncher<Vertx> container = KLauncher.create(clazz, args);
-        container.start(Electy.whenInstruction((vertx, config) -> {
+        container.start((vertx, config) -> {
             /*
              * 不做任何输入限制，都带有默认值处理
              */
@@ -40,6 +39,6 @@ public class EngrossMenu {
                     res.cause().printStackTrace();
                 }
             });
-        }));
+        });
     }
 }
