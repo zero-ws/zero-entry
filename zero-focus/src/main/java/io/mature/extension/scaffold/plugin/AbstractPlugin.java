@@ -1,6 +1,6 @@
 package io.mature.extension.scaffold.plugin;
 
-import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.atom.datamation.KMapping;
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.horizon.uca.log.Annal;
@@ -17,14 +17,14 @@ import java.util.Objects;
 @SuppressWarnings("unchecked")
 public abstract class AbstractPlugin<T> {
     protected transient DataAtom atom;
-    protected transient KDictAtom fabric;
+    protected transient KFabric fabric;
 
     public T bind(final DataAtom atom) {
         this.atom = atom;
         return (T) this;
     }
 
-    public T bind(final KDictAtom fabric) {
+    public T bind(final KFabric fabric) {
         this.fabric = fabric;
         return (T) this;
     }
@@ -37,7 +37,7 @@ public abstract class AbstractPlugin<T> {
         return Ut.toEnum(() -> options.getString(VDBC.I_SERVICE.SERVICE_CONFIG.CONFIGURATION_OPERATION), ChangeFlag.class, ChangeFlag.NONE);
     }
 
-    protected KDictAtom fabric(final JsonObject options) {
+    protected KFabric fabric(final JsonObject options) {
         Fn.out(Objects.isNull(this.fabric), _501FabricIssueException.class, this.getClass());
         final Object mapping = options.getValue(KName.MAPPING);
         final KMapping item = this.mapping(mapping);

@@ -1,6 +1,6 @@
 package io.mature.stellar;
 
-import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.uca.log.Annal;
 import io.macrocosm.specification.program.HArk;
 import io.mature.stellar.vendor.OkB;
@@ -73,7 +73,7 @@ public class OkOld implements OkA {
     /**
      * 「Async」根据传入的模型定义对象构造对应的字典翻译器。
      */
-    public static Future<KDictAtom> fabric(final DataAtom atom, final String bName) {
+    public static Future<KFabric> fabric(final DataAtom atom, final String bName) {
         if (Objects.isNull(atom)) {
             return Future.failedFuture(new _417DataAtomNullException(OkOld.class));
         } else {

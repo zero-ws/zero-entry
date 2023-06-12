@@ -1,6 +1,6 @@
 package io.mature.extension.uca.commerce;
 
-import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.horizon.uca.cache.Cc;
 import io.mature.extension.refine.Ox;
@@ -41,7 +41,7 @@ public class Arms {
             this.add(ChangeFlag.ADD);
         }
     };
-    private transient KDictAtom fabric;
+    private transient KFabric fabric;
 
     private Function<JsonArray, JsonArray> fnDefault;
     private Supplier<Future<JsonArray>> fnFetcher;
@@ -64,7 +64,7 @@ public class Arms {
         return this.dao;
     }
 
-    public <T extends Arms> T bind(final KDictAtom fabric) {
+    public <T extends Arms> T bind(final KFabric fabric) {
         this.fabric = fabric;
         return (T) this;
     }

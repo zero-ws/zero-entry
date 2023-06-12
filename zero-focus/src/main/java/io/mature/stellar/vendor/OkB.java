@@ -1,7 +1,7 @@
 package io.mature.stellar.vendor;
 
-import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.atom.datamation.KDictConfig;
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.atom.datamation.KMap;
 import io.horizon.eon.VString;
 import io.horizon.specification.typed.TCopy;
@@ -37,7 +37,7 @@ import io.vertx.up.unity.Ux;
  * <li>- 集成配置对象：{@link KIntegration}</li>
  * <li>- 字典相关信息：<br/>
  *     <ul>
- *     <li>1. 字典翻译器配置：{@link KDictAtom}</li>
+ *     <li>1. 字典翻译器配置：{@link KFabric}</li>
  *     <li>2. 字段映射器配置（树型）：{@link KMap}</li>
  *     </ul>
  * </li>
@@ -116,7 +116,7 @@ public interface OkB extends Party, TCopy<OkB> {
      *
      * @return {@link Future}
      */
-    default Future<KDictAtom> fabric() {
+    default Future<KFabric> fabric() {
         return this.fabric(VString.EMPTY);
     }
 
@@ -127,7 +127,7 @@ public interface OkB extends Party, TCopy<OkB> {
      *
      * @return {@link Future}
      */
-    default Future<KDictAtom> fabric(final DataAtom atom) {
+    default Future<KFabric> fabric(final DataAtom atom) {
         return this.fabric(atom.identifier()).compose(fabric -> {
             fabric.mapping().bind(atom.type());
             return Ux.future(fabric);
@@ -141,5 +141,5 @@ public interface OkB extends Party, TCopy<OkB> {
      *
      * @return {@link Future}
      */
-    Future<KDictAtom> fabric(String identifier);
+    Future<KFabric> fabric(String identifier);
 }

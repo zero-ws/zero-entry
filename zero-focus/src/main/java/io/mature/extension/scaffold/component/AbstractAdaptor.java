@@ -1,6 +1,6 @@
 package io.mature.extension.scaffold.component;
 
-import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.atom.datamation.KMapping;
 import io.horizon.exception.WebException;
 import io.horizon.exception.web._501NotSupportException;
@@ -344,9 +344,9 @@ public abstract class AbstractAdaptor extends AbstractComponent {
      * - Epsilon：字典消费组件配置
      * - DualItem：字典映射配置
      *
-     * @return {@link KDictAtom} 字典翻译器
+     * @return {@link KFabric} 字典翻译器
      */
-    public KDictAtom fabric() {
+    public KFabric fabric() {
         return this.fabric(this.atom());
     }
 
@@ -359,9 +359,9 @@ public abstract class AbstractAdaptor extends AbstractComponent {
      *
      * @param atom 传入的{@link DataAtom}模型定义对象。
      *
-     * @return {@link KDictAtom} 字典翻译器
+     * @return {@link KFabric} 字典翻译器
      */
-    public KDictAtom fabric(final DataAtom atom) {
+    public KFabric fabric(final DataAtom atom) {
         final KMapping mapping = this.mapping().child(atom.identifier());
         if (Objects.nonNull(mapping)) {
             mapping.bind(atom.type());

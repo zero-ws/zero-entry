@@ -1,7 +1,7 @@
 package io.mature.stellar.vendor;
 
-import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.atom.datamation.KDictConfig;
+import io.horizon.atom.datamation.KFabric;
 import io.macrocosm.specification.program.HArk;
 import io.mature.boot.supply.Envoy;
 import io.mature.stellar.OkA;
@@ -50,10 +50,10 @@ public abstract class AbstractParty implements OkB {
      *
      * @param identifier {@link String} 传入的模型统一标识符
      *
-     * @return `{@link Future}<{@link KDictAtom}>`
+     * @return `{@link Future}<{@link KFabric}>`
      */
     @Override
-    public Future<KDictAtom> fabric(final String identifier) {
+    public Future<KFabric> fabric(final String identifier) {
         final MultiMap params = this.input(identifier);
         params.add(KName.CACHE_KEY, RapidKey.JOB_DIRECTORY);
         final KDictConfig dict = this.configDict();

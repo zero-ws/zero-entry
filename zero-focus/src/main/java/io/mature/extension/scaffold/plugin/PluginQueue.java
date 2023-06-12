@@ -1,6 +1,6 @@
 package io.mature.extension.scaffold.plugin;
 
-import io.horizon.atom.datamation.KDictAtom;
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.spi.plugin.AfterPlugin;
 import io.horizon.spi.plugin.BeforePlugin;
 import io.horizon.spi.plugin.DataPlugin;
@@ -25,13 +25,13 @@ import java.util.function.Function;
 @SuppressWarnings("unchecked")
 public class PluginQueue {
     private final transient DataAtom atom;
-    private transient KDictAtom fabric;
+    private transient KFabric fabric;
 
     PluginQueue(final DataAtom atom) {
         this.atom = atom;
     }
 
-    void bind(final KDictAtom fabric) {
+    void bind(final KFabric fabric) {
         this.fabric = fabric;
     }
 

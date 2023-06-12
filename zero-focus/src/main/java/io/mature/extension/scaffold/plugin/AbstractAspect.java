@@ -1,8 +1,8 @@
 package io.mature.extension.scaffold.plugin;
 
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.spi.plugin.AspectPlugin;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
-import io.horizon.atom.datamation.KDictAtom;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ public abstract class AbstractAspect implements AspectPlugin {
     }
 
     @Override
-    public AspectPlugin bind(final KDictAtom fabric) {
+    public AspectPlugin bind(final KFabric fabric) {
         if (Objects.nonNull(this.queue)) {
             this.queue.bind(fabric);
         }

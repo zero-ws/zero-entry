@@ -1,12 +1,12 @@
 package io.mature.extension.scaffold.plugin;
 
+import io.horizon.atom.datamation.KFabric;
 import io.horizon.spi.plugin.AspectPlugin;
 import io.mature.extension.refine.Ox;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
-import io.horizon.atom.datamation.KDictAtom;
 import io.vertx.up.eon.KName;
 import io.vertx.up.unity.Ux;
 import io.vertx.up.util.Ut;
@@ -30,7 +30,7 @@ public class AspectSwitcher {
     private final transient JsonObject options;
     private final transient AspectPlugin plugin;
 
-    public AspectSwitcher(final DataAtom atom, final JsonObject optionsInput, final KDictAtom fabric) {
+    public AspectSwitcher(final DataAtom atom, final JsonObject optionsInput, final KFabric fabric) {
         /* 合并横切配置 */
         final JsonObject options = new JsonObject();
         options.mergeIn(Ut.valueJObject(optionsInput));
