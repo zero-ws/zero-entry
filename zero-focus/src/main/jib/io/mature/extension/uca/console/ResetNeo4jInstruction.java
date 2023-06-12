@@ -1,7 +1,7 @@
 package io.mature.extension.uca.console;
 
-import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.scaffold.console.AbstractInstruction;
+import io.mature.stellar.OkOld;
 import io.vertx.core.Future;
 import io.vertx.up.plugin.neo4j.Neo4jClient;
 import io.vertx.up.plugin.neo4j.Neo4jInfix;

@@ -2,7 +2,7 @@ package io.mature.extension.uca.console;
 
 import io.mature.extension.scaffold.console.AbstractInstruction;
 import io.vertx.core.Future;
-import io.vertx.mod.ke.booter.Bt;
+import io.vertx.mod.supply.DataImport;
 import io.vertx.up.plugin.database.DataPool;
 import io.vertx.up.plugin.shell.atom.CommandInput;
 import io.vertx.up.plugin.shell.cv.em.TermStatus;
@@ -27,7 +27,8 @@ public class JobInstruction extends AbstractInstruction {
          * 重新导入
          */
         final String prefix = this.inString(args, "p");
-        return Bt.loadAsync("init/oob/", prefix).compose(done -> {
+        final DataImport importer = DataImport.of();
+        return importer.loadAsync("init/oob/", prefix).compose(done -> {
             Sl.output("您的任务更新完成，更新结果：{0}", done);
             return Ux.future(done ? TermStatus.SUCCESS : TermStatus.FAILURE);
         });

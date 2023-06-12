@@ -1,4 +1,4 @@
-package io.mature.exploit.stellar;
+package io.mature.stellar;
 
 import io.horizon.fn.Actuator;
 import io.horizon.uca.log.Annal;

@@ -1,9 +1,9 @@
-package io.mature.exploit.stellar;
+package io.mature.stellar;
 
 import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.uca.log.Annal;
 import io.macrocosm.specification.program.HArk;
-import io.mature.exploit.stellar.vendor.OkB;
+import io.mature.stellar.vendor.OkB;
 import io.modello.atom.app.KGlobal;
 import io.modello.atom.app.KIntegration;
 import io.vertx.core.AsyncResult;

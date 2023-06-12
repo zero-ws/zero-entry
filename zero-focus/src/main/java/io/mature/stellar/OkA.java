@@ -1,7 +1,7 @@
-package io.mature.exploit.stellar;
+package io.mature.stellar;
 
 import io.horizon.eon.spec.VWeb;
-import io.mature.exploit.stellar.vendor.OkB;
+import io.mature.stellar.vendor.OkB;
 import io.modello.atom.app.KGlobal;
 
 /**

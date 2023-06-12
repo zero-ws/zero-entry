@@ -6,7 +6,7 @@ import io.mature.extension.migration.MigrateStep;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.mod.atom.refine.Ao;
-import io.vertx.mod.ke.booter.Bt;
+import io.vertx.mod.supply.DataImport;
 import io.vertx.up.unity.Ux;
 
 import static io.mature.extension.refine.Ox.LOG;
@@ -25,7 +25,8 @@ public class MetaFinisher extends AbstractStep {
     public Future<JsonObject> procAsync(final JsonObject config) {
         this.banner("002.3. 重新建模");
         /* XApp */
-        return Bt.loadAsync(Ao.PATH.PATH_EXCEL + "schema/").compose(nil -> {
+        final DataImport importer = DataImport.of();
+        return importer.loadAsync(Ao.PATH.PATH_EXCEL + "schema/").compose(nil -> {
             LOG.Shell.info(this.getClass(), "建模数据已经成功导入到系统！Successfully");
             return Ux.future(config)
                 /* Meta 专用报表 */

@@ -1,4 +1,4 @@
-package io.mature.exploit.stellar;
+package io.mature.stellar;
 
 import io.macrocosm.specification.program.HArk;
 import io.modello.atom.app.KDS;

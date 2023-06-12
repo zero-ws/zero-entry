@@ -39,7 +39,7 @@ public class TableHugeBackup extends AbstractStatic {
          * --tables log_sys sys_user
          * --user=root
          * --password=root
-         * --result-file=E:\Sqldata\test.sql
+         * --result-file=E:\Sqldata\mock.sql
          * --default-character-set=utf8
          */
         final StringBuilder cmd = new StringBuilder();

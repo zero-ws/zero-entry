@@ -1,9 +1,9 @@
 package io.mature.extension.uca.console;
 
-import io.mature.exploit.stellar.OkOld;
 import io.mature.extension.scaffold.console.AbstractInstruction;
+import io.mature.stellar.OkOld;
 import io.vertx.core.Future;
-import io.vertx.mod.ke.booter.Bt;
+import io.vertx.mod.supply.DataImport;
 import io.vertx.up.plugin.shell.atom.CommandInput;
 import io.vertx.up.plugin.shell.cv.em.TermStatus;
 import io.vertx.up.plugin.shell.refine.Sl;
@@ -25,9 +25,16 @@ public class LoadInstruction extends AbstractInstruction {
         } else {
             oob = isOob;
         }
-        return OkOld.app().compose(ok -> Bt.initAsync("init/oob/", oob).compose(done -> {
+        return OkOld.app().compose(ok -> {
+            final DataImport importer = DataImport.of();
+            if (oob) {
+                return importer.landAsync("init/oob/");
+            } else {
+                return importer.loadAsync("init/oob");
+            }
+        }).compose(done -> {
             Sl.output("您的元数据仓库已重置初始化完成！重置结果：{0}", done);
             return Ux.future(done ? TermStatus.SUCCESS : TermStatus.FAILURE);
-        }));
+        });
     }
 }

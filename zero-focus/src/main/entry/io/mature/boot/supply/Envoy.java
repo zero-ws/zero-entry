@@ -2,7 +2,8 @@ package io.mature.boot.supply;
 
 import io.horizon.atom.datamation.KDictConfig;
 import io.horizon.atom.datamation.KMap;
-import io.mature.exploit.stellar.OkA;
+import io.mature.stellar.OkA;
+import io.mature.stellar.vendor.AbstractParty;
 import io.modello.atom.app.KIntegration;
 import io.vertx.boot.supply.Electy;
 import io.vertx.core.MultiMap;
@@ -20,7 +21,7 @@ import io.vertx.core.json.JsonObject;
 public class Envoy {
 
     /**
-     * 在 {@link io.mature.exploit.stellar.vendor.AbstractParty} 中使用的条件部分
+     * 在 {@link AbstractParty} 中使用的条件部分
      *
      * @param partyA     {@link OkA} 作为入口参数
      * @param identifier 作为入口参数

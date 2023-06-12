@@ -1,7 +1,7 @@
 package io.mature.extension.scaffold.component;
 
-import io.vertx.up.annotations.Contract;
 import io.modello.atom.app.KIntegration;
+import io.vertx.up.annotations.Contract;
 
 /**
  * ## 「Connector」顶层连接器
@@ -67,7 +67,7 @@ public abstract class AbstractConnector extends AbstractAdaptor {
      *              "method": "POST",
      *              "uri": "/uri/getinfo"
      *          },
-     *          "post.test": {
+     *          "post.mock": {
      *              "method": "GET",
      *              "uri": "/uri/getinfo"
      *          }

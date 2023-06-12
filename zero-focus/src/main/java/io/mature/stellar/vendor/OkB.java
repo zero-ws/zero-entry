@@ -1,12 +1,12 @@
-package io.mature.exploit.stellar.vendor;
+package io.mature.stellar.vendor;
 
 import io.horizon.atom.datamation.KDictAtom;
 import io.horizon.atom.datamation.KDictConfig;
 import io.horizon.atom.datamation.KMap;
 import io.horizon.eon.VString;
 import io.horizon.specification.typed.TCopy;
-import io.mature.exploit.stellar.OkA;
-import io.mature.exploit.stellar.Party;
+import io.mature.stellar.OkA;
+import io.mature.stellar.Party;
 import io.modello.atom.app.KIntegration;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;

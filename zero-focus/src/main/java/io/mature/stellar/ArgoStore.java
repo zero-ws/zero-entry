@@ -1,4 +1,4 @@
-package io.mature.exploit.stellar;
+package io.mature.stellar;
 
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.horizon.eon.spec.VWeb;
