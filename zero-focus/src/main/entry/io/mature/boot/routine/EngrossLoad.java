@@ -2,7 +2,6 @@ package io.mature.boot.routine;
 
 import io.horizon.uca.boot.KLauncher;
 import io.mature.boot.argument.ArgLoad;
-import io.vertx.boot.supply.Electy;
 import io.vertx.core.Vertx;
 import io.vertx.mod.supply.DataImport;
 import io.vertx.up.eon.KName;
@@ -44,8 +43,7 @@ public class EngrossLoad {
 
         // 构造启动器（构造命令启动器）
         final KLauncher<Vertx> container = KLauncher.create(clazz, args);
-        container.start(Electy.whenInstruction((vertx, config) -> {
-
+        container.start((vertx, config) -> {
             // 构造数据导入器
             final DataImport importer = DataImport.of(vertx);
             if (oob) {
@@ -55,6 +53,6 @@ public class EngrossLoad {
                 // 不开启 OOB   ---> load
                 importer.load(vPath, prefix);
             }
-        }));
+        });
     }
 }
