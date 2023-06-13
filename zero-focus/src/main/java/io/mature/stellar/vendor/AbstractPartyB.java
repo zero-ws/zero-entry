@@ -4,7 +4,7 @@ import io.horizon.atom.datamation.KDictConfig;
 import io.horizon.atom.datamation.KFabric;
 import io.macrocosm.specification.program.HArk;
 import io.mature.boot.supply.Envoy;
-import io.mature.stellar.OkA;
+import io.mature.stellar.owner.OkA;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
@@ -16,10 +16,10 @@ import io.vertx.up.unity.Ux;
 /**
  * @author <a href="http://www.origin-x.cn">Lang</a>
  */
-public abstract class AbstractParty implements OkB {
+public abstract class AbstractPartyB implements OkB {
     protected final transient OkA partyA;
 
-    protected AbstractParty(final OkA partyA) {
+    protected AbstractPartyB(final OkA partyA) {
         this.partyA = partyA;
     }
 
@@ -41,8 +41,8 @@ public abstract class AbstractParty implements OkB {
      * @return {@link io.macrocosm.specification.program.HArk}
      */
     @Override
-    public HArk configApp() {
-        return this.partyA.configApp();
+    public HArk configArk() {
+        return this.partyA.configArk();
     }
 
     /**

@@ -2,14 +2,15 @@ package io.mature.boot.routine;
 
 import io.horizon.uca.boot.KLauncher;
 import io.mature.boot.argument.ArgLoad;
+import io.vertx.boot.supply.DataImport;
 import io.vertx.core.Vertx;
-import io.vertx.mod.supply.DataImport;
 import io.vertx.up.eon.KName;
 import io.vertx.up.util.Ut;
 
 import static io.vertx.mod.ke.refine.Ke.LOG;
 
 /**
+ * 「单应用」目前版本
  * 数据导入时参数必须要带，以确定当前参数是否包含 OOB 导入流程
  * <pre><code>
  * java -jar xxx.jar init/oop true

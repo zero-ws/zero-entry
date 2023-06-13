@@ -4,7 +4,6 @@ import io.macrocosm.specification.program.HArk;
 import io.mature.extension.scaffold.console.AbstractInstruction;
 import io.mature.extension.uca.graphic.Plotter;
 import io.mature.extension.uca.graphic.TopologyPlotter;
-import io.mature.stellar.OkOld;
 import io.vertx.core.Future;
 import io.vertx.up.plugin.shell.atom.CommandInput;
 import io.vertx.up.plugin.shell.cv.em.TermStatus;
@@ -23,8 +22,8 @@ public class GraphicInstruction extends AbstractInstruction {
         /*
          * 绘图仪
          */
-        return OkOld.vendor(appName).compose(okB -> {
-            final HArk app = okB.configApp();
+        return this.partyB(appName).compose(okB -> {
+            final HArk app = okB.configArk();
             final Plotter plotter = new TopologyPlotter();
             plotter.bind(app);
             return plotter.drawAsync(nodeId, edgeId, this.ignores()).compose(finished -> {

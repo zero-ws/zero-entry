@@ -1,6 +1,8 @@
-package io.mature.stellar;
+package io.mature.stellar.owner;
 
+import io.horizon.eon.em.Environment;
 import io.horizon.eon.spec.VWeb;
+import io.mature.stellar.Party;
 import io.mature.stellar.vendor.OkB;
 import io.modello.atom.app.KGlobal;
 
@@ -13,7 +15,9 @@ public interface OkA extends Party {
      *
      * @return 是否初始化完成
      */
-    boolean initialized();
+    default boolean initialized() {
+        return false;
+    }
 
     /**
      * 对应文件目录 {@link VWeb.runtime#CONFIGURATION_JSON}
@@ -30,4 +34,11 @@ public interface OkA extends Party {
      * @return {@link OkB}
      */
     OkB partyB(String name);
+
+    /**
+     * 返回当前甲方环境信息
+     *
+     * @return {@link Environment}
+     */
+    Environment environment();
 }

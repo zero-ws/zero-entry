@@ -10,10 +10,10 @@ import cn.vertxup.ui.domain.tables.pojos.UiForm;
 import cn.vertxup.ui.domain.tables.pojos.UiList;
 import io.horizon.atom.program.KRef;
 import io.macrocosm.specification.app.HApp;
+import io.macrocosm.specification.program.HArk;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.scaffold.console.AbstractInstruction;
 import io.mature.extension.uca.ui.FieldStatus;
-import io.mature.stellar.OkOld;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -152,7 +152,8 @@ public class AdjustUiInstruction extends AbstractInstruction {
         /*
          * 生成记录报表
          */
-        return OkOld.app().compose(ark -> {
+        return this.partyA().compose(okA -> {
+            final HArk ark = okA.configArk();
             final HApp app = ark.app();
             final DataAtom atom = Ao.toAtom(app.name(), identifier);
             /*

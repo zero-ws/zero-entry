@@ -7,7 +7,6 @@ import io.mature.extension.migration.MigrateStep;
 import io.mature.extension.migration.restore.MetaLimit;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.scaffold.console.AbstractInstruction;
-import io.mature.stellar.OkOld;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.up.plugin.shell.atom.CommandInput;
@@ -26,9 +25,9 @@ public class InitInstruction extends AbstractInstruction {
          * appName为null，直接获取app
          */
         if (appName == null) {
-            return OkOld.app().compose(this::defaultValue);
+            return this.partyA().compose(okA -> this.defaultValue(okA.configArk()));
         } else {
-            return OkOld.vendor(appName).compose(okB -> this.defaultValue(okB.configApp()));
+            return this.partyB(appName).compose(okB -> this.defaultValue(okB.configArk()));
         }
     }
 

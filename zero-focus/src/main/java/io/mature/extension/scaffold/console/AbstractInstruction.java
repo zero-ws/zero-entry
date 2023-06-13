@@ -8,7 +8,9 @@ import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
 import io.mature.extension.error._501EnvironmentException;
 import io.mature.extension.refine.Ox;
-import io.mature.stellar.OkOld;
+import io.mature.stellar.Ok;
+import io.mature.stellar.owner.OkA;
+import io.mature.stellar.vendor.OkB;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.up.eon.KName;
@@ -43,8 +45,8 @@ public abstract class AbstractInstruction extends AbstractCommander {
         final String filename = this.inString(args, "f");
         try {
             final JsonObject config = Ut.ioJObject(filename);
-            return OkOld.vendor(appName).compose(okB -> {
-                final HArk app = okB.configApp();
+            return this.partyB(appName).compose(okB -> {
+                final HArk app = okB.configArk();
                 return executor.apply(app, config);
             });
         } catch (final EmptyIoException ex) {
@@ -104,8 +106,8 @@ public abstract class AbstractInstruction extends AbstractCommander {
         /*
          * 初始化应用，后期可直接调用 this.app
          */
-        return OkOld.vendor(appName).compose(okB -> {
-            final HArk ark = okB.configApp();
+        return this.partyB(appName).compose(okB -> {
+            final HArk ark = okB.configArk();
             final JsonObject attachedJson = Objects.isNull(attached) ? new JsonObject() : attached;
 
             final JsonObject condition = new JsonObject();
@@ -117,6 +119,14 @@ public abstract class AbstractInstruction extends AbstractCommander {
                 /* identifiers 中处理每一个 */
                 .compose(identifiers -> Fn.combineT(new ArrayList<>(identifiers), consumer));
         });
+    }
+
+    protected Future<OkA> partyA() {
+        return Ok.of(this.vertxRef, this.environment);
+    }
+
+    protected Future<OkB> partyB(final String name) {
+        return Ok.of(this.vertxRef, this.environment).compose(okA -> Ux.future(okA.partyB(name)));
     }
 
     protected <O> Future<List<O>> runEach(final String appName, final Function<String, Future<O>> consumer) {

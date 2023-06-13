@@ -5,7 +5,6 @@ import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.scaffold.console.AbstractInstruction;
-import io.mature.stellar.OkOld;
 import io.mature.stellar.vendor.OkB;
 import io.modello.specification.HRecord;
 import io.modello.specification.action.HDao;
@@ -39,8 +38,8 @@ public class IndexInstruction extends AbstractInstruction {
     }
 
     private Future<Boolean> executeAsync(final String identifier, final String appName) {
-        return OkOld.ok().compose(okA -> {
-            final HArk ark = okA.configApp();
+        return this.partyA().compose(okA -> {
+            final HArk ark = okA.configArk();
             final HApp app = ark.app();
 
             final OkB partyB = okA.partyB(appName);

@@ -1,9 +1,9 @@
 package io.mature.extension.uca.console;
 
 import io.macrocosm.specification.app.HApp;
+import io.macrocosm.specification.program.HArk;
 import io.mature.extension.refine.Ox;
 import io.mature.extension.scaffold.console.AbstractInstruction;
-import io.mature.stellar.OkOld;
 import io.vertx.core.Future;
 import io.vertx.mod.atom.modeling.builtin.DataAtom;
 import io.vertx.mod.atom.refine.Ao;
@@ -20,7 +20,8 @@ public class ResetEsInstruction extends AbstractInstruction {
     @Override
     public Future<TermStatus> executeAsync(final CommandInput args) {
         final String appName = this.inString(args, "a");
-        return this.runEach(appName, identifier -> OkOld.app().compose(ark -> {
+        return this.runEach(appName, identifier -> this.partyA().compose(okA -> {
+            final HArk ark = okA.configArk();
             final HApp app = ark.app();
             final DataAtom atom = Ao.toAtom(app.name(), identifier);
             return Ox.runEs(atom).compose(client -> Ux.future(Boolean.TRUE));

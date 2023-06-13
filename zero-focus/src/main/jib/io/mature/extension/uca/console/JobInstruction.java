@@ -1,8 +1,8 @@
 package io.mature.extension.uca.console;
 
 import io.mature.extension.scaffold.console.AbstractInstruction;
+import io.vertx.boot.supply.DataImport;
 import io.vertx.core.Future;
-import io.vertx.mod.supply.DataImport;
 import io.vertx.up.plugin.database.DataPool;
 import io.vertx.up.plugin.shell.atom.CommandInput;
 import io.vertx.up.plugin.shell.cv.em.TermStatus;

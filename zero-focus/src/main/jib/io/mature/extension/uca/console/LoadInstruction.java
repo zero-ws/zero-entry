@@ -1,9 +1,8 @@
 package io.mature.extension.uca.console;
 
 import io.mature.extension.scaffold.console.AbstractInstruction;
-import io.mature.stellar.OkOld;
+import io.vertx.boot.supply.DataImport;
 import io.vertx.core.Future;
-import io.vertx.mod.supply.DataImport;
 import io.vertx.up.plugin.shell.atom.CommandInput;
 import io.vertx.up.plugin.shell.cv.em.TermStatus;
 import io.vertx.up.plugin.shell.refine.Sl;
@@ -25,7 +24,7 @@ public class LoadInstruction extends AbstractInstruction {
         } else {
             oob = isOob;
         }
-        return OkOld.app().compose(ok -> {
+        return this.partyA().compose(ok -> {
             final DataImport importer = DataImport.of();
             if (oob) {
                 return importer.landAsync("init/oob/");

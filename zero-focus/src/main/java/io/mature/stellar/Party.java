@@ -21,7 +21,7 @@ public interface Party {
      * @return {@link Database}
      */
     default Database configDatabase() {
-        final KDS<Database> kds = this.configApp().database();
+        final KDS<Database> kds = this.configArk().database();
         return kds.dynamic();
     }
 
@@ -30,5 +30,5 @@ public interface Party {
      *
      * @return {@link io.macrocosm.specification.program.HArk}
      */
-    HArk configApp();
+    HArk configArk();
 }

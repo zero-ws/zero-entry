@@ -3,7 +3,7 @@ package io.mature.stellar.vendor;
 import io.horizon.atom.datamation.KDictConfig;
 import io.horizon.atom.datamation.KMap;
 import io.mature.boot.supply.Envoy;
-import io.mature.stellar.OkA;
+import io.mature.stellar.owner.OkA;
 import io.modello.atom.app.KIntegration;
 import io.vertx.core.json.JsonObject;
 
@@ -22,7 +22,7 @@ import io.vertx.core.json.JsonObject;
  *
  * @author <a href="http://www.origin-x.cn">Lang</a>
  */
-class PartyB extends AbstractParty {
+class PartyB extends AbstractPartyB {
     /**
      * {@link KDictConfig}对象，字典翻译器配置。
      */

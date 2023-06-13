@@ -2,7 +2,7 @@ package io.mature.boot.supply;
 
 import io.macrocosm.specification.app.HApp;
 import io.macrocosm.specification.program.HArk;
-import io.mature.stellar.OkA;
+import io.mature.stellar.owner.OkA;
 import io.modello.atom.app.KGlobal;
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
@@ -29,7 +29,7 @@ class EInput {
 
     static JsonObject inputQr(final OkA partyA) {
         final JsonObject params = new JsonObject();
-        final HArk ark = partyA.configApp();
+        final HArk ark = partyA.configArk();
         if (Objects.isNull(ark)) {
             final KGlobal tenant = partyA.partyA();
             final JsonObject application = tenant.getApplication();
