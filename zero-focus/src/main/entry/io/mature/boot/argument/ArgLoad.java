@@ -15,7 +15,6 @@ public class ArgLoad extends ArgIn {
     private final ConcurrentMap<String, ArgVar> stored = new ConcurrentHashMap<>();
 
     private ArgLoad(final String[] args) {
-        super(args);
         {
             // 0 = path
             this.stored.put(KName.PATH, ArgVar
@@ -31,6 +30,7 @@ public class ArgLoad extends ArgIn {
                 .of(KName.PREFIX)
                 .valueDefault(VString.EMPTY));
         }
+        this.initialize(args);
     }
 
     public static ArgLoad of(final String[] args) {

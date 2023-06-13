@@ -14,13 +14,13 @@ public class ArgMenu extends ArgIn {
     private final ConcurrentMap<String, ArgVar> stored = new ConcurrentHashMap<>();
 
     private ArgMenu(final String[] args) {
-        super(args);
         {
             // 0 = path
             this.stored.put(KName.PATH, ArgVar
                 .of(KName.PATH)
                 .valueDefault("init/map/menu.yml"));
         }
+        this.initialize(args);
     }
 
     public static ArgMenu of(final String[] args) {

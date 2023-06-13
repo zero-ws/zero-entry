@@ -1,8 +1,11 @@
 package io.mature.stellar;
 
+import io.horizon.eon.em.Environment;
 import io.horizon.eon.em.typed.ChangeFlag;
 import io.horizon.eon.spec.VWeb;
+import io.horizon.runtime.Macrocosm;
 import io.vertx.core.json.JsonObject;
+import io.vertx.mod.ke.refine.Ke;
 import io.vertx.up.atom.element.JSix;
 import io.vertx.up.util.Ut;
 
@@ -42,13 +45,18 @@ public class ArgoStore {
     private static final JSix HEX;
 
     static {
+        final String envValue = Ut.env(Macrocosm.ZERO_ENV);
+        final Environment environment = Ut.toEnum(envValue, Environment.class, Environment.Production);
+        final String vPath = Ut.ioPath(VWeb.runtime.CONFIGURATION_JSON, environment);
+        Ke.LOG.Ok.info(ArgoStore.class, "Environment On = {0}, Path = {1}", environment, vPath);
         // 加载基础配置，目录规范中 runtime/configuration.json 路径
-        final JsonObject configuration = Ut.ioJObject(VWeb.runtime.CONFIGURATION_JSON);
+        final JsonObject configuration = Ut.ioJObject(vPath);
         CONFIGURATION.mergeIn(configuration, true);
         // 六维数据专用
         HEX = JSix.create(CONFIGURATION);
         // stellar 专用数据
-        final JsonObject stellar = Ut.valueJObject(CONFIGURATION, VWeb.runtime.configuration.STELLAR);
+        final String stellarIo = Ut.valueString(CONFIGURATION, VWeb.runtime.configuration.STELLAR);
+        final JsonObject stellar = Ut.ioJObject(stellarIo);
         STELLAR.mergeIn(stellar, true);
         // options 专用数据
         final JsonObject options = Ut.valueJObject(CONFIGURATION, VWeb.runtime.configuration.OPTIONS);

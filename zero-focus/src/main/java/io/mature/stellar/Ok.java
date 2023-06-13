@@ -7,6 +7,7 @@ import io.horizon.spi.BootIo;
 import io.horizon.uca.boot.KConfigurer;
 import io.horizon.uca.cache.Cc;
 import io.horizon.util.HUt;
+import io.macrocosm.specification.config.HConfig;
 import io.macrocosm.specification.config.HEnergy;
 import io.mature.stellar.owner.DevelopmentA;
 import io.mature.stellar.owner.MockitoA;
@@ -47,7 +48,7 @@ public class Ok {
     }
 
     public static Future<OkA> of(final Environment environment) {
-        return of(Ux.nativeVertx(), environment);
+        return of(Ux.nativeVertx(), environment).otherwise(Ux.otherwise(null));
     }
 
     public static Future<OkA> of(final Vertx vertx, final Environment environment) {
@@ -61,8 +62,9 @@ public class Ok {
     private static Future<OkA> of(final Vertx vertx, final Supplier<OkA> supplier) {
         final KConfigurer<Vertx> configurer = configurer();
         final Promise<OkA> promise = Promise.promise();
-
-
+        // 触发 Pre
+        final HConfig config = configurer.onConfig();
+        configurer.preExecute(vertx, config);
         // whenInstruction 中会执行应用注册，得到最终的 HAmbient 信息
         Electy.whenInstruction((vertxRef, configRef) -> {
             final OkA okA = supplier.get();
@@ -78,6 +80,9 @@ public class Ok {
             throw new BootIoMissingException(Ok.class);
         }
         final HEnergy energy = io.energy(Ok.class, new String[]{});
+        /* 环境提取 */
+        KConfigurer.environment();
+
         return KConfigurer.of(energy);
     }
 }

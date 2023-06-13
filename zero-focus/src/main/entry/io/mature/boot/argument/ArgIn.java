@@ -29,13 +29,15 @@ public abstract class ArgIn {
      *     2. {@link ArgIn#definition()}
      *        定义了参数的基本规范
      * </code></pre>
-     *
-     * @param args 被解析的参数表（从main函数进入）
      */
-    protected ArgIn(final String[] args) {
+    protected ArgIn() {
+
+    }
+
+    protected void initialize(final String[] args) {
         final List<String> names = this.names();
         for (int idx = VValue.IDX; idx < names.size(); idx++) {
-            if ((idx + 1) < args.length) {
+            if (idx < args.length) {
                 final String name = names.get(idx);
                 final String value = args[idx];
                 final ArgVar var = this.definition().get(name);

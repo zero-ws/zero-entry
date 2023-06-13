@@ -15,16 +15,16 @@ public class ArgAtom extends ArgIn {
     private final ConcurrentMap<String, ArgVar> stored = new ConcurrentHashMap<>();
 
     private ArgAtom(final String[] args) {
-        super(args);
         {
-            // 0 = path
-            this.stored.put(KName.PATH, ArgVar
-                .of(KName.PATH));
-            // 1 = module
+            // 0 = module
             this.stored.put(KName.MODULE, ArgVar
                 .of(KName.MODULE)
                 .valueDefault(VString.EMPTY));
+            // 1 = path
+            this.stored.put(KName.PATH, ArgVar
+                .of(KName.PATH));
         }
+        this.initialize(args);
     }
 
     public static ArgAtom of(final String[] args) {
@@ -43,8 +43,8 @@ public class ArgAtom extends ArgIn {
     @Override
     protected List<String> names() {
         return List.of(
-            KName.PATH,
-            KName.MOBILE
+            KName.MODULE,
+            KName.PATH
         );
     }
 

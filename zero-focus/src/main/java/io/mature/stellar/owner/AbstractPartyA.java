@@ -60,6 +60,7 @@ public abstract class AbstractPartyA implements OkA {
             } else {
                 this.ark = Ke.ark(appId);
             }
+            Fn.outBoot(Objects.isNull(this.ark), AmbientConnectException.class, this.getClass());
             final HApp app = this.ark.app();
             LOG.Ok.info(this.getClass(), "HAmbient Environment has been initialized! = {0}", app.name());
         }

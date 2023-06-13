@@ -29,7 +29,8 @@ public class EngrossMenu {
             Ke.LOG.Ke.info(clazz, """
                     信息说明
                     \t环境：{0}
-                    \t数据路径：{1}""",
+                    \t数据路径：{1}
+                    """,
                 input.environment(), vPath
             );
 

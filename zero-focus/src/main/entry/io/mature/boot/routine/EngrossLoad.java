@@ -37,7 +37,8 @@ public class EngrossLoad {
                 信息说明
                 \t环境：{0}, 开启OOB：{1}
                 \t数据路径：{2}
-                \t过滤模式：{3}""",
+                \t过滤模式：{3}
+                """,
             input.environment(), oob, vPath, prefix
         );
 
