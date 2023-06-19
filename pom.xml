@@ -14,6 +14,7 @@
     <modules>
         <module>zero-focus</module>
         <module>zero-import</module>
+        <module>zero-mini</module>
     </modules>
     <build>
         <plugins>

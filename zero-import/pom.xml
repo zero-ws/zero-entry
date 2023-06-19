@@ -65,6 +65,11 @@
                 <artifactId>zero-focus</artifactId>
                 <version>${zero.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.zerows</groupId>
+                <artifactId>zero-mini</artifactId>
+                <version>${zero.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

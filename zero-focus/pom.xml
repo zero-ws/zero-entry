@@ -13,6 +13,11 @@
     <name>Zero Entry / Stack of Extension</name>
 
     <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
         <!-- CRUD统一模块 -->
         <dependency>
             <groupId>io.zerows</groupId>
