@@ -42,6 +42,12 @@
             <artifactId>zero-is</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- 文档考试管理 -->
+        <dependency>
+            <groupId>io.zerows</groupId>
+            <artifactId>zero-doc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- 模块化专用 -->
         <dependency>
             <groupId>io.zerows</groupId>
