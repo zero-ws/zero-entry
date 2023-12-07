@@ -15,15 +15,6 @@
         <module>zero-focus</module>
         <module>zero-import</module>
         <module>zero-mini</module>
-        <!--
-        直接从 zero-focus 分离出来的上下文相关信息，重新整理依赖结构
-
-        -->
-        <module>zero-env-init</module>
-        <module>zero-env-mockito</module>
-        <module>zero-env-up</module>
-        <module>zero-env-for</module>
-        <module>zero-env-plugin</module>
     </modules>
     <build>
         <plugins>
