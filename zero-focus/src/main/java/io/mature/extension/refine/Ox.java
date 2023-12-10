@@ -768,6 +768,17 @@ public final class Ox {
     }
 
     /**
+     * 针对插件配置的处理
+     *
+     * @param key 插件所需的Key
+     *
+     * @return
+     */
+    public static boolean onOff(final String key) {
+        return OxConfig.onOff(key);
+    }
+
+    /**
      * ## 环境静态类
      *
      * ### 1. 基本介绍
@@ -777,15 +788,6 @@ public final class Ox {
      * @author <a href="http://www.origin-x.cn">Lang</a>
      */
     public interface Env {
-
-        /**
-         * <value>item.enabled</value>，ITSM 专用流程开关。
-         *
-         * @return {@link Boolean} ITSM是否启用
-         */
-        static boolean isItsmEnabled() {
-            return OxConfig.isItsmEnabled();
-        }
 
 
         /**

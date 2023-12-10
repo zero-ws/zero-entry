@@ -71,20 +71,13 @@ final class OxConfig {
     private OxConfig() {
     }
 
-    /**
-     * <value>item.enabled</value>，ITSM 专用流程开关。
-     *
-     * @return {@link Boolean} ITSM是否启用
-     */
-    static boolean isItsmEnabled() {
-        // 新版方法内部调用 ArgoStore.configuration()
+    static boolean onOff(final String key) {
+
         final JsonObject configuration = ArgoStore.configuration();
-        final Boolean enabled = configuration.getBoolean("itsm.enabled");
-        if (Objects.isNull(enabled)) {
-            return false;
-        } else {
-            return enabled;
-        }
+
+        final JsonObject onOff = Ut.valueJObject(configuration, "on-off");
+
+        return onOff.getBoolean(key, Boolean.FALSE);
     }
 
     /**
