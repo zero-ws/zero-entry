@@ -99,31 +99,34 @@ final class OxTo {
     /**
      * 「Node」图节点格式化专用方法。
      *
-     * 格式化细节：
-     *
-     * - 将`globalId`赋值给`key`属性。
-     * - 拷贝`name`属性。
-     * - 拷贝`code`属性。
-     * - 将原始数据{@link JsonObject}拷贝到`data`属性中。
+     * <pre><code>
+     * 新版策略调整：
+     * - 存在 globalId，证明当前节点和 UCMDB 有集成
+     *      - 将`globalId`赋值给`key`属性。
+     *      - 拷贝`name`属性。
+     *      - 拷贝`code`属性。
+     *      - 将原始数据{@link JsonObject}拷贝到`data`属性中。
+     * - 不存在 globalId，证明当前节点和 UCMDB 无集成
+     *      - 唯一的区别是 `key` 维持不变。
+     * </code></pre>
      *
      * @param nodeData {@link JsonObject} 待格式化的图节点对象
      *
      * @return {@link JsonObject} 完成格式化的图节点
      */
     static JsonObject toNode(final JsonObject nodeData) {
+        final JsonObject node = new JsonObject();
         if (Objects.isNull(nodeData.getValue(KName.GLOBAL_ID))) {
-            return null;
+            // 非UCMDB模式
+            node.put(KName.KEY, nodeData.getValue(KName.KEY));
         } else {
-            final JsonObject node = new JsonObject();
-            /*
-             * key值是 globalId 的值，这一点必须注意
-             */
+            // UCMDB模式，key值是 globalId 的值，这一点必须注意
             node.put(KName.KEY, nodeData.getValue(KName.GLOBAL_ID));
-            node.put(KName.NAME, nodeData.getValue(KName.NAME));
-            node.put(KName.CODE, nodeData.getValue(KName.CODE));
-            node.put(KName.DATA, nodeData);
-            return node;
         }
+        node.put(KName.NAME, nodeData.getValue(KName.NAME));
+        node.put(KName.CODE, nodeData.getValue(KName.CODE));
+        node.put(KName.DATA, nodeData);
+        return node;
     }
 
     /**
